@@ -11,9 +11,6 @@ const redirect_uri = process.env.REACT_APP_REDIRECT_URI;
 const URL = `${base}/?client_id=${client_id}&response_type=${response_type}&redirect_uri=${redirect_uri}`;
 
 class Login extends Component {
-  handleClick = () => {
-    console.log('click');
-  };
   render() {
     return (
       <Container>
