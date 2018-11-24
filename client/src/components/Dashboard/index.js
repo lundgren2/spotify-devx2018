@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { SpotifyGraphQLClient } from 'spotify-graphql';
 import Container from '../ui/Container';
 import Emoji from '../Emoji';
 import Playlists from '../Playlists';
@@ -21,35 +20,6 @@ export default class Dashboard extends Component {
   }
 
   render() {
-    //     SpotifyGraphQLClient(config)
-    //       .query(
-    //         `
-    //   {
-    //     user(id: "11879785") {
-    //       playlists {
-    //         name
-    //         tracks {
-    //           track {
-    //             id
-    //             name
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // `
-    // )
-    // .then(executionResult => {
-    //   if (executionResult.errors) {
-    //     console.log('error');
-    //     console.error(JSON.stringify(executionResult.errors));
-    //   } else {
-    //     console.log('success');
-    //     this.setState({ playlists: executionResult.data.user.playlists });
-    //     console.log(JSON.stringify(executionResult.data));
-    //   }
-    // });
-
     const { redirect, playlist } = this.state;
     return redirect ? (
       <Redirect to="/" />
