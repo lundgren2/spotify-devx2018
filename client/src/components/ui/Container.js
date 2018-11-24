@@ -6,7 +6,7 @@ const Container = props => {
   return (
     <Box
       px={20}
-      py={40}
+      py={20}
       mt={'35%'}
       m={20}
       display="flex"

@@ -10,10 +10,10 @@ import Avatar from '@material-ui/core/Avatar';
 const styles = theme => ({
   root: {
     width: '100%',
-    maxWidth: 520,
-    maxHeight: 320,
+    maxHeight: '80vh',
     overflow: 'auto',
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: '#eee',
+    borderRadius: 8,
   },
 });
 
