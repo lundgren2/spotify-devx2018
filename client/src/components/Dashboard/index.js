@@ -6,11 +6,26 @@ import Container from '../ui/Container';
 import Emoji from '../Emoji';
 import Playlists from '../Playlists';
 import fakePlaylists from './fakePlaylists';
+import getAccessToken from '../../utils/getAccessToken';
+import { Redirect } from 'react-router-dom';
 
 export default class Dashboard extends Component {
   state = {
     playlists: [],
+    token: null,
+    redirect: false,
   };
+  componentDidMount() {
+    getAccessToken(this.props.location.search)
+      .then(json => {
+        this.setState({ token: json.data.access_token });
+      })
+      .catch(() => {
+        // redirect to login
+        this.setState({ redirect: true });
+      });
+  }
+
   render() {
     //     SpotifyGraphQLClient(config)
     //       .query(
@@ -40,8 +55,11 @@ export default class Dashboard extends Component {
     //     console.log(JSON.stringify(executionResult.data));
     //   }
     // });
-    const { playlists } = this.state;
-    return (
+
+    const { playlists, redirect } = this.state;
+    return redirect ? (
+      <Redirect to="/" />
+    ) : (
       <Container>
         <h2>
           Who are you today?‍‍‍‍‍ <Emoji symbol="🤷" />
