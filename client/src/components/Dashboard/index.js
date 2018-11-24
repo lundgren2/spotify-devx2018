@@ -1,10 +1,25 @@
+import React from 'react';
 import { SpotifyGraphQLClient } from 'spotify-graphql';
 import config from '../../utils/config';
-
-import React from 'react';
+import Container from '../ui/Container';
+import { Select } from '@smooth-ui/core-em';
+import Emoji from '../Emoji';
+import List from '../ui/List';
 
 export default () => {
-  return <div />;
+  return (
+    <Container>
+      <h2>
+        Who are you today?‍‍‍‍‍ <Emoji symbol="🤷" />
+      </h2>
+      <p>Pick one playlist that best matches your mood today!</p>
+      <List />
+      {/* <Select size="lg" placeholder="Large">
+        <option value="amazing">Happy playlist</option>
+        <option value="great">Sad playlist</option>
+      </Select> */}
+    </Container>
+  );
 };
 
 SpotifyGraphQLClient(config)
