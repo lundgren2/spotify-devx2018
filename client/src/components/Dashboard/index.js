@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { SpotifyGraphQLClient } from 'spotify-graphql';
-import config from '../../utils/config';
 import Container from '../ui/Container';
 import Emoji from '../Emoji';
 import Playlists from '../Playlists';
-import fakePlaylists from './fakePlaylists';
 import getAccessToken from '../../utils/getAccessToken';
 import { Redirect } from 'react-router-dom';
 import { getUsersOwnPlaylists } from '../../utils/service';
