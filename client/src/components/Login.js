@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import queryString from 'query-string';
 import Button from './ui/Button';
-import axios from 'axios';
 import { Box } from '@smooth-ui/core-em';
 import Container from './ui/Container';
 import styles from '../styles';
@@ -9,11 +7,12 @@ import styles from '../styles';
 const base = 'https://accounts.spotify.com/authorize';
 const client_id = '167d9bf647524ef28ea579584c33e6bb';
 const response_type = 'code';
-const redirect_uri = 'http://localhost:3000/callback';
+const redirect_uri = 'http://localhost:3000/dashboard';
 // const scope = ''; // to be added
 const URL = `${base}/?client_id=${client_id}&response_type=${response_type}&redirect_uri=${redirect_uri}`;
 
 class Login extends Component {
+  
   componentDidMount() {
     const queryParams = this.props.location && this.props.location.search;
     const parsed = queryString.parse(queryParams);
@@ -32,6 +31,7 @@ class Login extends Component {
         console.log(error);
       });
   }
+
   handleClick = () => {
     console.log('click');
   };
