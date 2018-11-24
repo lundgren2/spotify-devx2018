@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
 import Dashboard from './Dashboard';
 import Login from './Login';
+import Overview from './Overview';
 
 const style = {
   app: {
@@ -23,6 +24,7 @@ const style = {
 class App extends Component {
   render() {
     return (
+
       <div style={style.app}>
         <Router>
           <div>

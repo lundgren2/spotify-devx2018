@@ -1,0 +1,45 @@
+{
+  "collaborative": false,
+  "external_urls": {
+    "spotify": "https://open.spotify.com/playlist/1c94n82rOLOHYOminUI1FB"
+  },
+  "href": "https://api.spotify.com/v1/playlists/1c94n82rOLOHYOminUI1FB",
+  "id": "1c94n82rOLOHYOminUI1FB",
+  "images": [
+    {
+      "height": 640,
+      "url": "https://mosaic.scdn.co/640/10e359ca5c32b609274c8fcde447fcd9c4cb31fe37f930dc0cd8b2ac1bb01f7661190d0ae8e751ea4f84b4eeaf35021813bbc6ad50b90016fa38c82ee640b49e5b81f71e8b288b4e7e3042e514f2b215",
+      "width": 640
+    },
+    {
+      "height": 300,
+      "url": "https://mosaic.scdn.co/300/10e359ca5c32b609274c8fcde447fcd9c4cb31fe37f930dc0cd8b2ac1bb01f7661190d0ae8e751ea4f84b4eeaf35021813bbc6ad50b90016fa38c82ee640b49e5b81f71e8b288b4e7e3042e514f2b215",
+      "width": 300
+    },
+    {
+      "height": 60,
+      "url": "https://mosaic.scdn.co/60/10e359ca5c32b609274c8fcde447fcd9c4cb31fe37f930dc0cd8b2ac1bb01f7661190d0ae8e751ea4f84b4eeaf35021813bbc6ad50b90016fa38c82ee640b49e5b81f71e8b288b4e7e3042e514f2b215",
+      "width": 60
+    }
+  ],
+  "name": "Lundgren Design",
+  "owner": {
+    "display_name": "Tobias Lundgren",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/user/freeride00"
+    },
+    "href": "https://api.spotify.com/v1/users/freeride00",
+    "id": "freeride00",
+    "type": "user",
+    "uri": "spotify:user:freeride00"
+  },
+  "primary_color": null,
+  "public": true,
+  "snapshot_id": "Mzg0LDhkNWRiNmVlYWE2NWZjYzRlMjljOTcyNjc3ZjBhM2RlMzE1ZDU3YmQ=",
+  "tracks": {
+    "href": "https://api.spotify.com/v1/playlists/1c94n82rOLOHYOminUI1FB/tracks",
+    "total": 257
+  },
+  "type": "playlist",
+  "uri": "spotify:user:freeride00:playlist:1c94n82rOLOHYOminUI1FB"
+}

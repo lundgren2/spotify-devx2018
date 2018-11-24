@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { SpotifyGraphQLClient } from 'spotify-graphql';
 import config from '../../utils/config';
 import Container from '../ui/Container';
-// import { Select } from '@smooth-ui/core-em';
 import Emoji from '../Emoji';
 import Playlists from '../Playlists';
 import fakePlaylists from './fakePlaylists';
@@ -65,14 +64,7 @@ export default class Dashboard extends Component {
           Who are you today?‍‍‍‍‍ <Emoji symbol="🤷" />
         </h2>
         <p>Pick one playlist that best matches your mood today!</p>
-        {/* <List /> */}
         <Playlists items={fakePlaylists.items} />
-
-        {/* <Select size="lg" placeholder="Large">
-          <option value="amazing">Happy playlist</option>
-          <option value="great">Sad playlist</option>
-        </Select> */}
-        <br />
       </Container>
     );
   }

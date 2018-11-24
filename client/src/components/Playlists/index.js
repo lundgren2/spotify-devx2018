@@ -40,7 +40,6 @@ class CheckboxListSecondary extends React.Component {
 
   render() {
     const { classes, items } = this.props;
-    console.log(items);
     return (
       <div className={classes.root}>
         <List dense>
