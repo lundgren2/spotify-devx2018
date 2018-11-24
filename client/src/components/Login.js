@@ -3,13 +3,12 @@ import Button from './ui/Button';
 import { Box } from '@smooth-ui/core-em';
 import Container from './ui/Container';
 import styles from '../styles';
+import config from '../config';
 
-const base = 'https://accounts.spotify.com/authorize';
-const client_id = '167d9bf647524ef28ea579584c33e6bb';
-const response_type = 'code';
-const redirect_uri = 'http://localhost:3000/dashboard';
 // const scope = ''; // to be added
-const URL = `${base}/?client_id=${client_id}&response_type=${response_type}&redirect_uri=${redirect_uri}`;
+const URL = `${config.BASE}/?client_id=${config.CLIENT_ID}&response_type=${
+  config.RESPONSIVE_TYPE
+}&redirect_uri=${config.REDIRECT_URI}`;
 
 class Login extends Component {
   render() {
