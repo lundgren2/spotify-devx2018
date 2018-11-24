@@ -6,6 +6,7 @@ import './App.css';
 import Dashboard from './Dashboard';
 import Login from './Login';
 import Overview from './Overview';
+import MyEmotion from './MyEmotion';
 
 const style = {
   app: {
@@ -26,10 +27,17 @@ class App extends Component {
     return (
       <div style={style.app}>
         <Router>
-          <div style={style.container}>
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/" component={Login} />
-          </div>
+          <>
+            <div style={style.container}>
+              <Route exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/" component={Login} />
+            </div>
+            <Route
+              exact
+              path="/emotion"
+              component={() => <MyEmotion emoji="🔥" color="orange" />}
+            />
+          </>
         </Router>
       </div>
     );

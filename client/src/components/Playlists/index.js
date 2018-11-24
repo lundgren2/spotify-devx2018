@@ -6,11 +6,13 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const styles = theme => ({
   root: {
     width: '100%',
-    maxHeight: '80vh',
+    height: '80%',
+    maxHeight: '50vh',
     overflow: 'auto',
     backgroundColor: '#eee',
     borderRadius: 8,
@@ -48,6 +50,11 @@ class CheckboxListSecondary extends React.Component {
               <Avatar alt="Remy Sharp" src={item.images[0].url} />
               <ListItemText primary={`${item.name}`} />
               <ListItemSecondaryAction />
+              <Checkbox
+                checked={this.state.checked.indexOf(item) !== -1}
+                tabIndex={-1}
+                disableRipple
+              />
             </ListItem>
           ))}
         </List>

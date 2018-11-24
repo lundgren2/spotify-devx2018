@@ -4,10 +4,9 @@ import Emoji from './Emoji';
 const MyEmotion = ({ emoji, color }) => {
   const style = {
     container: {
-      width: '100%',
+      width: '100vw',
       height: '100vh',
-      position: 'absolute',
-      zIndex: 999,
+      position: 'relative',
       background: color,
       display: 'flex',
       justifyContent: 'center',
