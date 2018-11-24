@@ -13,9 +13,6 @@ const URL = `${base}/?client_id=${client_id}&response_type=${response_type}&redi
 
 class Login extends Component {
 
-  handleClick = () => {
-    console.log('click');
-  };
   render() {
     return (
       <Container>

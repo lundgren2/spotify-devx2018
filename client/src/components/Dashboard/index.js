@@ -7,22 +7,19 @@ import Playlists from '../Playlists';
 import fakePlaylists from './fakePlaylists';
 import getAccessToken from '../../utils/getAccessToken';
 import { Redirect } from 'react-router-dom';
+import { getUsersOwnPlaylists } from '../../utils/service';
 
 export default class Dashboard extends Component {
   state = {
-    playlists: [],
-    token: null,
+    playlist: null,
     redirect: false,
   };
   componentDidMount() {
-    getAccessToken(this.props.location.search)
-      .then(token => {
-        this.setState({ token });
-      })
-      .catch(() => {
-        // redirect to login
-        this.setState({ redirect: true });
-      });
+    getAccessToken(this.props.location.search).then(token => {
+      getUsersOwnPlaylists(10, token)
+        .then(playlist => this.setState({ playlist }))
+        .catch(() => this.setState({ redirect: true }));
+    });
   }
 
   render() {
@@ -55,7 +52,7 @@ export default class Dashboard extends Component {
     //   }
     // });
 
-    const { playlists, redirect } = this.state;
+    const { redirect, playlist } = this.state;
     return redirect ? (
       <Redirect to="/" />
     ) : (
@@ -64,7 +61,7 @@ export default class Dashboard extends Component {
           Who are you today?‍‍‍‍‍ <Emoji symbol="🤷" />
         </h2>
         <p>Pick one playlist that best matches your mood today!</p>
-        <Playlists items={fakePlaylists.items} />
+        {playlist ? <Playlists items={playlist} /> : null}
       </Container>
     );
   }
