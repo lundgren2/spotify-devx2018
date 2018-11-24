@@ -1,12 +1,12 @@
 import { SpotifyGraphQLClient } from 'spotify-graphql';
-// import config from '../utils/config';
+import config from '../utils/config';
 
-const config = {
-  clientId: '',
-  clientSecret: '',
-  redirectUri: 'localhost:3000',
-  accessToken: '',
-};
+// const config = {
+//   clientId: '',
+//   clientSecret: '',
+//   redirectUri: 'localhost:3000',
+//   accessToken: '',
+// };
 
 export default SpotifyGraphQLClient(config)
   .query(

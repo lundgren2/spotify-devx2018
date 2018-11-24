@@ -10,7 +10,10 @@ const StyledButton = styled(SmoothButton)({
   height: 84,
   borderRadius: 8,
   border: 0,
-  // color: styles.colors.fontColor,
+  fontWeight: 'bold',
+  fontSize: 24,
+  background: styles.colors.yellow,
+  color: styles.colors.fontColor,
   padding: '0 30px',
   width: '80%',
   maxWidth: '440px',
@@ -18,7 +21,7 @@ const StyledButton = styled(SmoothButton)({
 });
 
 const Button = props => {
-  return <StyledButton>{props.children}</StyledButton>;
+  return <StyledButton variant="warning">{props.children}</StyledButton>;
 };
 
 export default Button;
