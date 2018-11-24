@@ -15,9 +15,8 @@ const URL = `${base}/?client_id=${client_id}&response_type=${response_type}&redi
 
 class Login extends Component {
   componentDidMount() {
-    const queryParams = this.props.location.search;
+    const queryParams = this.props.location && this.props.location.search;
     const parsed = queryString.parse(queryParams);
-    console.log(process.env.CLIENT_ID);
     axios
       .get('http://localhost:8888/callback', {
         params: {

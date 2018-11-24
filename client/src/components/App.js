@@ -6,6 +6,7 @@ import './App.css';
 import Header from './Header';
 import Dashboard from './Dashboard';
 import Login from './Login';
+import Overview from './Overview';
 
 const style = {
   app: {
@@ -28,8 +29,8 @@ class App extends Component {
         <div style={style.app}>
           <div style={style.container}>
             <Header />
-            <Login />
             <Dashboard />
+            <Overview />
             <Route exact path="/" component={Login} />
             <Route exact path="/callback" component={Login} />
           </div>
