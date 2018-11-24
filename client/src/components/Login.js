@@ -3,16 +3,14 @@ import Button from './ui/Button';
 import { Box } from '@smooth-ui/core-em';
 import Container from './ui/Container';
 import styles from '../styles';
-
-const base = 'https://accounts.spotify.com/authorize';
-const client_id = '167d9bf647524ef28ea579584c33e6bb';
-const response_type = 'code';
-const redirect_uri = 'http://localhost:3000/dashboard';
+const base = process.env.REACT_APP_BASE;
+const client_id = process.env.REACT_APP_CLIENT_ID;
+const response_type = process.env.REACT_APP_RESPONSE_TYPE;
+const redirect_uri = process.env.REACT_APP_REDIRECT_URI;
 // const scope = ''; // to be added
 const URL = `${base}/?client_id=${client_id}&response_type=${response_type}&redirect_uri=${redirect_uri}`;
 
 class Login extends Component {
-
   render() {
     return (
       <Container>
@@ -23,8 +21,9 @@ class Login extends Component {
           <p style={{ color: styles.colors.gray }}>
             Find friends based on your current mood.
           </p>
-          <a href={URL}>Login</a>
-          <Button variant="primary">Login with Spotify</Button>
+          <a href={URL}>
+            <Button variant="primary">Login with Spotify</Button>
+          </a>
         </Box>
       </Container>
     );
