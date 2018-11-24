@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+// import logo from '../logo.svg';
 import './App.css';
-import Dashboard from './Dashboard';
+// import Dashboard from './Dashboard';
+import Login from './Login';
 
 class App extends Component {
   render() {
-    console.log(process.env.REACT_APP_TOKEN);
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <Dashboard />
-        </header>
-      </div>
+      <Router>
+        <div className="App">
+          <header className="App-header">
+            <Route exact path="/" component={Login} />
+            <Route exact path="/callback" component={Login} />
+          </header>
+        </div>
+      </Router>
     );
   }
 }
