@@ -16,8 +16,8 @@ export default class Dashboard extends Component {
   };
   componentDidMount() {
     getAccessToken(this.props.location.search)
-      .then(json => {
-        this.setState({ token: json.data.access_token });
+      .then(token => {
+        this.setState({ token });
       })
       .catch(() => {
         // redirect to login
