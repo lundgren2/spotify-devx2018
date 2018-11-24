@@ -17,4 +17,4 @@
 ### Server
 
 1. `cd server && yarn`
-2. run `yarn start`
+2. run `node server.js`
