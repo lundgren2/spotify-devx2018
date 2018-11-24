@@ -12,25 +12,6 @@ const redirect_uri = 'http://localhost:3000/dashboard';
 const URL = `${base}/?client_id=${client_id}&response_type=${response_type}&redirect_uri=${redirect_uri}`;
 
 class Login extends Component {
-  
-  componentDidMount() {
-    const queryParams = this.props.location && this.props.location.search;
-    const parsed = queryString.parse(queryParams);
-    axios
-      .get('http://localhost:8888/callback', {
-        params: {
-          code: parsed.code,
-          redirect_uri: redirect_uri,
-        },
-      })
-      .then(json => {
-        // handle tokens
-        console.log(json);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
 
   handleClick = () => {
     console.log('click');
