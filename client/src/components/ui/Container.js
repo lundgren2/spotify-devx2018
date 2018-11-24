@@ -1,13 +1,12 @@
 import React from 'react';
 import styled from 'react-emotion';
 import { Box } from '@smooth-ui/core-em';
-import { white, black } from 'ansi-colors';
 
 const Container = props => {
   return (
     <Box
       px={20}
-      pt={40}
+      py={40}
       mt={'28%'}
       m={20}
       display="flex"

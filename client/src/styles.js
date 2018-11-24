@@ -3,7 +3,7 @@ const colors = {
   yellow: '#EAD50F',
   backgroundColor: 'white',
   fontColor: '#222',
-  gray: '#aaaaaa',
+  gray: '#888',
 };
 
 const styles = {

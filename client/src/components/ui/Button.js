@@ -4,8 +4,6 @@ import { Button as SmoothButton } from '@smooth-ui/core-em';
 import { white, black } from 'ansi-colors';
 import styles from '../../styles';
 
-console.log(styles);
-
 const StyledButton = styled(SmoothButton)({
   height: 84,
   borderRadius: 8,

@@ -1,51 +1,61 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { SpotifyGraphQLClient } from 'spotify-graphql';
 import config from '../../utils/config';
 import Container from '../ui/Container';
-import { Select } from '@smooth-ui/core-em';
+// import { Select } from '@smooth-ui/core-em';
 import Emoji from '../Emoji';
-import List from '../ui/List';
+import Playlists from '../Playlists';
+import fakePlaylists from './fakePlaylists';
 
-export default () => {
-  return (
-    <Container>
-      <h2>
-        Who are you today?‍‍‍‍‍ <Emoji symbol="🤷" />
-      </h2>
-      <p>Pick one playlist that best matches your mood today!</p>
-      <List />
-      {/* <Select size="lg" placeholder="Large">
-        <option value="amazing">Happy playlist</option>
-        <option value="great">Sad playlist</option>
-      </Select> */}
-    </Container>
-  );
-};
+export default class Dashboard extends Component {
+  state = {
+    playlists: [],
+  };
+  render() {
+    //     SpotifyGraphQLClient(config)
+    //       .query(
+    //         `
+    //   {
+    //     user(id: "11879785") {
+    //       playlists {
+    //         name
+    //         tracks {
+    //           track {
+    //             id
+    //             name
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // `
+    // )
+    // .then(executionResult => {
+    //   if (executionResult.errors) {
+    //     console.log('error');
+    //     console.error(JSON.stringify(executionResult.errors));
+    //   } else {
+    //     console.log('success');
+    //     this.setState({ playlists: executionResult.data.user.playlists });
+    //     console.log(JSON.stringify(executionResult.data));
+    //   }
+    // });
+    const { playlists } = this.state;
+    return (
+      <Container>
+        <h2>
+          Who are you today?‍‍‍‍‍ <Emoji symbol="🤷" />
+        </h2>
+        <p>Pick one playlist that best matches your mood today!</p>
+        {/* <List /> */}
+        <Playlists items={fakePlaylists.items} />
 
-SpotifyGraphQLClient(config)
-  .query(
-    `
-  {
-    user(id: "11879785") {
-      playlists {
-        name
-        tracks {
-          track {
-            id
-            name
-          }
-        }
-      }
-    }
+        {/* <Select size="lg" placeholder="Large">
+          <option value="amazing">Happy playlist</option>
+          <option value="great">Sad playlist</option>
+        </Select> */}
+        <br />
+      </Container>
+    );
   }
-`
-  )
-  .then(executionResult => {
-    if (executionResult.errors) {
-      console.log('error');
-      console.error(JSON.stringify(executionResult.errors));
-    } else {
-      console.log('success');
-      console.log(JSON.stringify(executionResult.data));
-    }
-  });
+}
