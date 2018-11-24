@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'react-emotion';
 import Button from './ui/Button';
 import { Box } from '@smooth-ui/core-em';
 import Container from './ui/Container';
