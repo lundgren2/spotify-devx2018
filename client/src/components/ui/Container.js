@@ -10,7 +10,6 @@ const Container = props => {
       mt={'28%'}
       m={20}
       display="flex"
-      justifyContent="space-between"
       flexDirection="column"
       backgroundColor="#fff"
       borderRadius={8}

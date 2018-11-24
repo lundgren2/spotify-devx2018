@@ -28,7 +28,6 @@ class App extends Component {
       <Router>
         <div style={style.app}>
           <div style={style.container}>
-            <Header />
             <Dashboard />
             <Overview />
             <Route exact path="/" component={Login} />

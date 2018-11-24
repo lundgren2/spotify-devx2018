@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Container from '../ui/Container';
 import fakePlaylist from './fakePlaylist';
 import Emoji from '../Emoji';
+import Button from '../ui/Button';
 
 export default class Overview extends Component {
   // TODO: fix showChat to true
@@ -60,6 +61,7 @@ export default class Overview extends Component {
             <b>Emotion:</b> Fire <Emoji symbol="🔥" />
           </li>
         </ul>
+        <Button>Find friends</Button>
       </div>
     );
 
