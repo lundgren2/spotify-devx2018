@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+// import logo from '../logo.svg';
 import './App.css';
 import Header from './Header';
 import Dashboard from './Dashboard';
@@ -21,15 +23,18 @@ const style = {
 
 class App extends Component {
   render() {
-    console.log(process.env.REACT_APP_TOKEN);
     return (
-      <div style={style.app}>
-        <div style={style.container}>
-          <Header />
-          <Login />
-          <Dashboard />
+      <Router>
+        <div style={style.app}>
+          <div style={style.container}>
+            <Header />
+            <Login />
+            <Dashboard />
+            <Route exact path="/" component={Login} />
+            <Route exact path="/callback" component={Login} />
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }
