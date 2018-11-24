@@ -24,14 +24,11 @@ const style = {
 class App extends Component {
   render() {
     return (
-
       <div style={style.app}>
         <Router>
-          <div>
-            <div style={style.container}>
-              <Route exact path="/dashboard" component={Dashboard} />
-              <Route exact path="/" component={Login} />
-            </div>
+          <div style={style.container}>
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/" component={Login} />
           </div>
         </Router>
       </div>

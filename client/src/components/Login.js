@@ -12,7 +12,6 @@ const redirect_uri = 'http://localhost:3000/dashboard';
 const URL = `${base}/?client_id=${client_id}&response_type=${response_type}&redirect_uri=${redirect_uri}`;
 
 class Login extends Component {
-
   handleClick = () => {
     console.log('click');
   };
@@ -26,8 +25,9 @@ class Login extends Component {
           <p style={{ color: styles.colors.gray }}>
             Find friends based on your current mood.
           </p>
-          <a href={URL}>Login</a>
-          <Button variant="primary">Login with Spotify</Button>
+          <a href={URL}>
+            <Button variant="primary">Login with Spotify</Button>
+          </a>
         </Box>
       </Container>
     );
