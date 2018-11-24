@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 // import logo from '../logo.svg';
 import './App.css';
-import Header from './Header';
 import Dashboard from './Dashboard';
 import Login from './Login';
 
@@ -24,17 +23,16 @@ const style = {
 class App extends Component {
   render() {
     return (
-      <Router>
-        <div style={style.app}>
-          <div style={style.container}>
-            <Header />
-            <Login />
-            <Dashboard />
-            <Route exact path="/" component={Login} />
-            <Route exact path="/callback" component={Login} />
+      <div style={style.app}>
+        <Router>
+          <div>
+            <div style={style.container}>
+              <Route exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/" component={Login} />
+            </div>
           </div>
-        </div>
-      </Router>
+        </Router>
+      </div>
     );
   }
 }

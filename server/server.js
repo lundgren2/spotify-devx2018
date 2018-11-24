@@ -37,7 +37,11 @@ app.get('/callback', function(req, res) {
         }
       );
     } else{
+      console.log(response.statusCode);;
       console.log(error);
+      res.status(response.statusCode).json({ error: error });
+      res.send();
+
     }
   });
 
