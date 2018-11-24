@@ -3,6 +3,7 @@ import Button from './ui/Button';
 import { Box } from '@smooth-ui/core-em';
 import Container from './ui/Container';
 import styles from '../styles';
+
 const base = 'https://accounts.spotify.com/authorize';
 const client_id = '167d9bf647524ef28ea579584c33e6bb';
 const response_type = 'code';
@@ -21,9 +22,8 @@ class Login extends Component {
           <p style={{ color: styles.colors.gray }}>
             Find friends based on your current mood.
           </p>
-          <a href={URL}>
-            <Button variant="primary">Login with Spotify</Button>
-          </a>
+          <a href={URL}>Login</a>
+          <Button variant="primary">Login with Spotify</Button>
         </Box>
       </Container>
     );
