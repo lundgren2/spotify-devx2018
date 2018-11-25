@@ -23,7 +23,7 @@ export default class Dashboard extends Component {
   linkToOverview = playlist => {
     this.props.history.push({
       pathname: '/overview',
-      state: { playlist: playlist, token: this.state.token },
+      state: { playlist: playlist, token: this.state.token, firstTime: true},
     });
   };
 
