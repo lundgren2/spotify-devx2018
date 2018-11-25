@@ -25,30 +25,9 @@ export default class Dashboard extends Component {
     });
   }
 
-  async getAudioInfo() {
-    const { playlist, token } = this.state;
-    const entrys = await getTracksInPlaylist(playlist[0].id, token);
-    const trackIds = entrys.map(entry => entry.track.id);
-    const audioInfoList = await getAudioInfo(trackIds, token);
-    return audioInfoList;
-  }
-
   render() {
-    const { redirect, playlist } = this.state;
-    if (playlist) {
-      const audioInfoList = this.getAudioInfo();
-      audioInfoList.then(json => {
-        console.log(json);
-      });
 
-      // getTracksInPlaylist(playlist[0].id, token).then(entrys => {
-      //   const trackIds = entrys.map(entry => entry.track.id);
-      //   getAudioInfo(trackIds, token).then(audioInfoList => {
-      //     console.log(audioInfoList);
-      //   })
-      //
-      // });
-    }
+    const { redirect, playlist, token } = this.state;
     return redirect ? (
       <Redirect to="/" />
     ) : (
@@ -57,7 +36,7 @@ export default class Dashboard extends Component {
           Who are you today?‍‍‍‍‍ <Emoji symbol="🤷" />
         </h2>
         <p>Pick one playlist that best matches your mood today!</p>
-        {playlist && <Playlists items={playlist} />}
+        {playlist ? <Playlists items={playlist} token={token} /> : null}
         <br />
         <Link to={'/overview'}>
           <Button>Next</Button>

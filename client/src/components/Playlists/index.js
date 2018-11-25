@@ -7,6 +7,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import Checkbox from '@material-ui/core/Checkbox';
+import { getPlaylistAudioInfo } from '../../utils/service';
 
 const styles = theme => ({
   root: {
@@ -41,12 +42,20 @@ class CheckboxListSecondary extends React.Component {
   };
 
   render() {
-    const { classes, items } = this.props;
+    const { classes, items, token } = this.props;
     return (
       <div className={classes.root}>
         <List dense>
           {items.map((item, index) => (
-            <ListItem key={index} button>
+            <ListItem
+              key={index}
+              onClick={() => {
+                getPlaylistAudioInfo(item, token).then(array => {
+                  console.log(array);
+                });
+              }}
+              button
+            >
               <Avatar alt="Remy Sharp" src={item.images[0].url} />
               <ListItemText primary={`${item.name}`} />
               <ListItemSecondaryAction />
