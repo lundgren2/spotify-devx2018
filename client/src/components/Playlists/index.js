@@ -5,7 +5,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
-import { Redirect } from 'react-router-dom';
 
 const styles = theme => ({
   root: {
@@ -19,27 +18,12 @@ const styles = theme => ({
 });
 
 class CheckboxListSecondary extends React.Component {
-  state = {
-    chosenPlaylist: null,
-  };
-
   handleClick = chosenPlaylist => {
-    this.setState({ chosenPlaylist });
+    this.props.linkToOverview(chosenPlaylist);
   };
 
   render() {
-    const { classes, items, token } = this.props;
-    const { chosenPlaylist } = this.state;
-    if (chosenPlaylist) {
-      return (
-        <Redirect
-          to={{
-            pathname: '/overview',
-            state: { playlist: chosenPlaylist, token: token },
-          }}
-        />
-      );
-    }
+    const { classes, items } = this.props;
     return (
       <div className={classes.root}>
         <List dense>
