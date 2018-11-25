@@ -37,30 +37,46 @@ export default class Overview extends Component {
     playlistAttributes: null,
     text: '',
     firstTime: true,
+    token: null,
   };
 
   componentDidMount() {
-    this.state.firstTime &&
-      setTimeout(() => {
-        this.setState({
-          showChat: false,
-          firstTime: false,
-        });
-      }, 3500);
+    const firstTime = this.props.location.state.firstTime;
+    console.log(this.props.location.state);
+    console.log(firstTime);
+    if (firstTime) {
+      this.state.firstTime &&
+        setTimeout(() => {
+          this.setState({
+            showChat: true,
+            firstTime: false,
+          });
+        }, 3500);
 
-    this.state.firstTime &&
-      setTimeout(() => {
-        this.setState({
-          showOverview: true,
-        });
-      }, 4000);
-    const playlist =
-      this.props.location.state && this.props.location.state.playlist;
-    const token = this.props.location.state && this.props.location.state.token;
+      this.state.firstTime &&
+        setTimeout(() => {
+          this.setState({
+            showOverview: true,
+          });
+        }, 4000);
+    } else {
+      this.setState({
+        showChat: false,
+        showOverview: true,
+      });
+    }
+
+    let playlist = null;
+    let token = null;
+    if (this.props.location.state) {
+      playlist = this.props.location.state.playlist;
+      token = this.props.location.state.token;
+    }
     getPlaylistAudioInfo(playlist, token).then(playlistAttributes => {
       this.setState({
         playlistAttributes: playlistAttributes,
         playlist: playlist,
+        token: token,
       });
     });
   }
@@ -79,14 +95,21 @@ export default class Overview extends Component {
     }
   };
 
+  linkToEmotion = (emoji, color) => {
+    this.props.history.push({
+      pathname: '/emotion',
+      state: {
+        playlist: this.state.playlist,
+        token: this.state.token,
+        emoji: emoji,
+        color: color,
+        text: this.state.text,
+      },
+    });
+  };
+
   render() {
-    const {
-      playlist,
-      playlistAttributes,
-      showChat,
-      showOverview,
-      text,
-    } = this.state;
+    const { playlist, playlistAttributes, showChat, showOverview } = this.state;
     const style = {
       chatText: {
         transition: 'opacity 1s ease-in-out',
@@ -217,15 +240,10 @@ export default class Overview extends Component {
           <div onClick={() => this.setState({ text: TEXT_3 })}>
             <StatusButton>{TEXT_3}</StatusButton>
           </div>
-          <Link
-            to={{
-              pathname: '/emotion',
-              state: { emoji: emoji, color: color, text: text },
-            }}
-          >
+          <div onClick={() => this.linkToEmotion(emoji, color)}>
             <br />
             <Button>Find friends</Button>
-          </Link>
+          </div>
         </div>
       );
     };

@@ -2,7 +2,7 @@ import React from 'react';
 import Emoji from './Emoji';
 
 const MyEmotion = props => {
-  const { emoji, color, text } = props.location.state;
+  const { emoji, color, text, playlist, token } = props.location.state;
 
   const style = {
     container: {
@@ -20,7 +20,21 @@ const MyEmotion = props => {
   };
 
   return (
-    <div onClick={() => props.history.goBack()}>
+    <div
+      onClick={() => {
+        props.history.push({
+          pathname: '/overview',
+          state: {
+            playlist: playlist,
+            token: token,
+            emoji: emoji,
+            color: color,
+            text: text,
+            firstTime: false,
+          },
+        });
+      }}
+    >
       <div style={style.container}>
         <div>
           <Emoji symbol={emoji} style={{ display: 'block' }} />
