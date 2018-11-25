@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Container from '../ui/Container';
-import fakePlaylist from './fakePlaylist';
 import Emoji from '../Emoji';
 import Button from '../ui/Button';
 import { getPlaylistAudioInfo } from '../../utils/service';
