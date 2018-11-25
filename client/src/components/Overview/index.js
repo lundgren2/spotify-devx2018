@@ -8,20 +8,20 @@ import { Box } from '@smooth-ui/core-em';
 import styles from '../../styles';
 
 const MOOD_HAPPY = {
-  EMOJI: '😎',
-  COLOR: 'pink',
+  EMOJI: '😎🤗',
+  COLOR: 'rgba(185, 36, 59, 1)',
 };
 const MOOD_SAD = {
-  EMOJI: '😕',
-  COLOR: 'purple',
+  EMOJI: '😕😢',
+  COLOR: 'rgba(123, 31, 162, 1)',
 };
 const MOOD_ANGRY = {
-  EMOJI: '😤 ',
-  COLOR: 'gray',
+  EMOJI: '😤😠',
+  COLOR: 'rgba(39, 38, 38, 1)',
 };
 const MOOD_PARTY = {
-  EMOJI: '💃🏽',
-  COLOR: 'orange',
+  EMOJI: '🥳🕺',
+  COLOR: 'rgba(220, 112, 43, 1)',
 };
 
 const TEXT_1 = 'Single and ready to mingle';
