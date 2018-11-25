@@ -21,9 +21,8 @@ class Login extends Component {
           <p style={{ color: styles.colors.gray }}>
             Find friends based on your current mood.
           </p>
-          <a href={URL}>
-            <Button variant="primary">Login with Spotify</Button>
-          </a>
+          <a href={URL}>Login</a>
+          <Button variant="primary">Login with Spotify</Button>
         </Box>
       </Container>
     );

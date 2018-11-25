@@ -4,24 +4,51 @@ import Container from '../ui/Container';
 import Emoji from '../Emoji';
 import Playlists from '../Playlists';
 import getAccessToken from '../../utils/getAccessToken';
-import { getUsersOwnPlaylists } from '../../utils/service';
 import Button from '../ui/Button';
+import {
+  getUsersOwnPlaylists,
+  getTracksInPlaylist,
+  getAudioInfo,
+} from '../../utils/service';
 
 export default class Dashboard extends Component {
   state = {
     playlist: null,
     redirect: false,
+    token: null,
   };
   componentDidMount() {
     getAccessToken(this.props.location.search).then(token => {
-      getUsersOwnPlaylists(10, token)
-        .then(playlist => this.setState({ playlist }))
+      getUsersOwnPlaylists(20, token)
+        .then(playlist => this.setState({ playlist: playlist, token: token }))
         .catch(() => this.setState({ redirect: true }));
     });
   }
 
+  async getAudioInfo() {
+    const { playlist, token } = this.state;
+    const entrys = await getTracksInPlaylist(playlist[0].id, token);
+    const trackIds = entrys.map(entry => entry.track.id);
+    const audioInfoList = await getAudioInfo(trackIds, token);
+    return audioInfoList;
+  }
+
   render() {
     const { redirect, playlist } = this.state;
+    if (playlist) {
+      const audioInfoList = this.getAudioInfo();
+      audioInfoList.then(json => {
+        console.log(json);
+      });
+
+      // getTracksInPlaylist(playlist[0].id, token).then(entrys => {
+      //   const trackIds = entrys.map(entry => entry.track.id);
+      //   getAudioInfo(trackIds, token).then(audioInfoList => {
+      //     console.log(audioInfoList);
+      //   })
+      //
+      // });
+    }
     return redirect ? (
       <Redirect to="/" />
     ) : (
