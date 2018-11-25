@@ -10,23 +10,23 @@ import styles from '../../styles';
 const MOOD_HAPPY = {
   EMOJI: '😎',
   COLOR: 'pink',
-  TEXT: 'Single and ready to mingle',
 };
 const MOOD_SAD = {
   EMOJI: '😕',
   COLOR: 'purple',
-  TEXT: 'Single and ready to mingle',
 };
 const MOOD_ANGRY = {
   EMOJI: '😤 ',
   COLOR: 'gray',
-  TEXT: 'Single and ready to mingle',
 };
 const MOOD_PARTY = {
   EMOJI: '💃🏽',
   COLOR: 'orange',
-  TEXT: 'Single and ready to mingle',
 };
+
+const TEXT_1 = 'Single and ready to mingle';
+const TEXT_2 = 'Single and ready to mingle 2';
+const TEXT_3 = 'Single and ready to mingle 3';
 
 export default class Overview extends Component {
   // TODO: fix showChat to true
@@ -35,6 +35,7 @@ export default class Overview extends Component {
     showChat: true,
     showOverview: true,
     playlistAttributes: null,
+    text: '',
   };
 
   componentDidMount() {
@@ -61,7 +62,6 @@ export default class Overview extends Component {
   }
 
   getMood = () => {
-    console.log(this.state.playlistAttributes);
     const valence = this.state.playlistAttributes.valence;
     const energy = this.state.playlistAttributes.energy;
     if (valence >= 0.5 && energy >= 0.5) {
@@ -76,7 +76,13 @@ export default class Overview extends Component {
   };
 
   render() {
-    const { playlist, playlistAttributes, showChat, showOverview } = this.state;
+    const {
+      playlist,
+      playlistAttributes,
+      showChat,
+      showOverview,
+      text,
+    } = this.state;
     const style = {
       chatText: {
         transition: 'opacity 1s ease-in-out',
@@ -102,12 +108,10 @@ export default class Overview extends Component {
 
     let emoji = '🤑';
     let color = 'green';
-    let text = `Single and ready to mingle`;
     if (playlistAttributes) {
       const mood = this.getMood();
       emoji = mood.EMOJI;
       color = mood.COLOR;
-      text = mood.TEXT;
     }
 
     const renderOverview = () => {
@@ -194,6 +198,19 @@ export default class Overview extends Component {
             <br />
             <Button>Find friends</Button>
           </Link>
+          <br />
+          <br />
+          <div onClick={() => this.setState({ text: TEXT_1 })}>
+            <Button>{TEXT_1}</Button>
+          </div>
+          <br />
+          <div onClick={() => this.setState({ text: TEXT_2 })}>
+            <Button>{TEXT_2}</Button>
+          </div>
+          <br />
+          <div onClick={() => this.setState({ text: TEXT_3 })}>
+            <Button>{TEXT_3}</Button>
+          </div>
         </div>
       );
     };
