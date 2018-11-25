@@ -63,9 +63,18 @@ export async function getPlaylistAudioInfo(playlist, token) {
 
   const valenceAverage = calcAverageAttribute('valence', audioInfoList);
   const energyAverage = calcAverageAttribute('energy', audioInfoList);
-  const danceabilityAverage = calcAverageAttribute('danceability', audioInfoList);
-  const acousticnessAverage = calcAverageAttribute('acousticness', audioInfoList);
-  const instrumentalnessAverage = calcAverageAttribute('instrumentalness', audioInfoList);
+  const danceabilityAverage = calcAverageAttribute(
+    'danceability',
+    audioInfoList
+  );
+  const acousticnessAverage = calcAverageAttribute(
+    'acousticness',
+    audioInfoList
+  );
+  const instrumentalnessAverage = calcAverageAttribute(
+    'instrumentalness',
+    audioInfoList
+  );
   const livenessAverage = calcAverageAttribute('liveness', audioInfoList);
   const loudnessAverage = calcAverageAttribute('loudness', audioInfoList);
   const modeAverage = calcAverageAttribute('mode', audioInfoList);
