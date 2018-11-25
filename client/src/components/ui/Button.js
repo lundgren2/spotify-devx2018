@@ -9,7 +9,7 @@ const StyledButton = styled(SmoothButton)({
   border: 0,
   fontWeight: 'bold',
   fontSize: 24,
-  background: styles.colors.yellow,
+  background: styles.colors.brandColor,
   color: styles.colors.someBlue,
   padding: '0 30px',
   width: '100%',
@@ -18,21 +18,22 @@ const StyledButton = styled(SmoothButton)({
 });
 
 const Button = props => {
-  return <StyledButton variant="warning">{props.children}</StyledButton>;
+  return <StyledButton variant="success">{props.children}</StyledButton>;
 };
 
 const StyledStatusButton = styled(SmoothButton)({
   // height: 24,
   borderRadius: 8,
   border: 0,
-  // fontWeight: 'bold',
-  fontSize: 14,
-  background: styles.colors.brandColor,
+  fontWeight: 'bold',
+  fontSize: 15,
   color: '#fff',
-  padding: '12px 12px',
+  padding: '12px 14px',
   marginBottom: '14px',
   width: '100%',
-  // maxWidth: '440px',
+  ':focus': {
+    background: '#222',
+  },
   boxShadow: styles.boxShadow,
 });
 

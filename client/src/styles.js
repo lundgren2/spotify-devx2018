@@ -1,9 +1,10 @@
 const colors = {
-  brandColor: 'rgb(31, 40, 129)',
+  brandColor: '#1ed760',
   yellow: '#EAD50F',
   backgroundColor: 'white',
   fontColor: '#222',
   gray: '#888',
+  white: '#fff',
 };
 
 const styles = {

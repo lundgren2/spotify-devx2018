@@ -16,6 +16,7 @@ const MyEmotion = props => {
       alignItems: 'center',
       verticalAlign: 'middle',
       fontSize: '670%',
+      textAlign: 'center',
     },
   };
 

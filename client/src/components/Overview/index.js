@@ -7,6 +7,8 @@ import { getPlaylistAudioInfo } from '../../utils/service';
 import { Box } from '@smooth-ui/core-em';
 import styles from '../../styles';
 
+// TODO: Refactor this chaos Component
+
 const MOOD_HAPPY = {
   EMOJI: '😎🤗',
   COLOR: 'rgba(185, 36, 59, 1)',
@@ -41,9 +43,9 @@ export default class Overview extends Component {
   };
 
   componentDidMount() {
-    const firstTime = this.props.location.state.firstTime;
-    console.log(this.props.location.state);
-    console.log(firstTime);
+    const firstTime = this.props.location.state
+      ? this.props.location.state.firstTime
+      : true;
     if (firstTime) {
       this.state.firstTime &&
         setTimeout(() => {
@@ -51,14 +53,14 @@ export default class Overview extends Component {
             showChat: true,
             firstTime: false,
           });
-        }, 3500);
+        }, 2500);
 
       this.state.firstTime &&
         setTimeout(() => {
           this.setState({
             showOverview: true,
           });
-        }, 4000);
+        }, 3000);
     } else {
       this.setState({
         showChat: false,
@@ -168,6 +170,7 @@ export default class Overview extends Component {
             flexDirection="row"
             justifyContent="space-between"
             backgroundColor="#eee"
+            alignItems="center"
             borderRadius={12}
             p={1}
             maxWidth={'100%'}
@@ -204,7 +207,7 @@ export default class Overview extends Component {
                   Specs
                 </li>
               </ul>
-              {playlistAttr.tempo > 130 ? (
+              {playlistAttr.tempo > 115 ? (
                 <Emoji symbol="🏎💨" />
               ) : (
                 <Emoji symbol="👵" />
@@ -217,11 +220,14 @@ export default class Overview extends Component {
             </Box>
           </Box>
           <div style={{ textAlign: 'center', positin: 'relative' }}>
-            <b style={{ fontSize: 16 }}>
-              Your emoji today based on your
-              <br /> playlist:
+            <b style={{ fontSize: 18 }}>
+              Your emoji today based on your playlist:
+              <br />
             </b>
-            <Emoji symbol={emoji} /> <br />
+            <span style={{ fontSize: 44 }}>
+              <Emoji symbol={emoji} />
+            </span>
+            <br />
             <b
               style={{
                 color: '#555',
@@ -247,6 +253,7 @@ export default class Overview extends Component {
           <div onClick={() => this.linkToEmotion(emoji, color)}>
             <Button>Find friends</Button>
           </div>
+          <br />
           <Link
             to={{
               pathname: '/dashboard',
@@ -256,7 +263,7 @@ export default class Overview extends Component {
               style={{
                 color: '#555',
                 fontSize: 12,
-                padding: 8,
+                padding: 12,
                 textTransform: 'uppercase',
                 fontWeight: 'bold',
                 textAlign: 'center',

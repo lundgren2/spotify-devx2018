@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 export async function getUsersOwnPlaylists(limit, token) {
   let playlist = null;
@@ -14,16 +15,21 @@ export async function getUsersOwnPlaylists(limit, token) {
     console.log(error);
     return;
   }
-  return playlist.data.items;
+  // TODO: fix ugly solution
+  return playlist ? playlist.data.items : null;
 }
 
 async function getTracksInPlaylist(playlist_id, token) {
+  // if this is an error, clear your localhost and start over!
+
   let tracks = null;
   try {
     tracks = await axios.get(
       `https://api.spotify.com/v1/playlists/${playlist_id}/tracks`,
       {
-        headers: { Authorization: 'Bearer ' + token },
+        headers: {
+          Authorization: 'Bearer ' + token,
+        },
       }
     );
   } catch (error) {
@@ -57,6 +63,7 @@ function calcAverageAttribute(attribute, audioInfoList) {
 }
 
 export async function getPlaylistAudioInfo(playlist, token) {
+  // if this is an error, clear your localhost and start over!
   const entrys = await getTracksInPlaylist(playlist.id, token);
   const trackIds = entrys.map(entry => entry.track.id);
   const audioInfoList = await getAudioInfo(trackIds, token);

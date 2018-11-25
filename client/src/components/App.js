@@ -14,12 +14,12 @@ const style = {
     display: 'flex',
     width: '100%',
     minHeight: '100vh',
-    background: styles.colors.brandColor,
-    textAlign: 'center',
+    backgroundImage: 'linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%)',
+    justifyContent: 'center',
   },
   container: {
-    maxWidth: 840,
-    margin: '0 auto',
+    maxWidth: '100%',
+    width: '480px',
   },
 };
 
@@ -29,7 +29,7 @@ class App extends Component {
       <div style={style.app}>
         <Router>
           <>
-            <div style={style.container}>
+            <div style={styles.container}>
               <Route exact path="/" component={Login} />
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/overview" component={Overview} />
