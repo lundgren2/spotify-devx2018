@@ -13,8 +13,8 @@ const StyledButton = styled(SmoothButton)({
   background: styles.colors.yellow,
   color: styles.colors.fontColor,
   padding: '0 30px',
-  width: '80%',
-  maxWidth: '440px',
+  width: '100%',
+  // maxWidth: '440px',
   boxShadow: styles.boxShadow,
 });
 
