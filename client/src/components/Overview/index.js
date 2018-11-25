@@ -253,7 +253,17 @@ export default class Overview extends Component {
               pathname: '/dashboard',
             }}
           >
-            <button>Back</button>
+            <span
+              style={{
+                color: '#555',
+                fontSize: 12,
+                padding: 8,
+                textTransform: 'uppercase',
+                fontWeight: 'bold',
+              }}
+            >
+              Change playlist
+            </span>
           </Link>
         </div>
       );
