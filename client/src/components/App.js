@@ -7,13 +7,14 @@ import Dashboard from './Dashboard';
 import Login from './Login';
 import Overview from './Overview';
 import MyEmotion from './MyEmotion';
+import styles from '../styles';
 
 const style = {
   app: {
     display: 'flex',
     width: '100%',
     minHeight: '100vh',
-    background: 'rgb(32, 0, 255)',
+    background: styles.colors.brandColor,
     textAlign: 'center',
   },
   container: {
