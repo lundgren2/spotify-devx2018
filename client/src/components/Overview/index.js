@@ -5,6 +5,27 @@ import Emoji from '../Emoji';
 import Button from '../ui/Button';
 import { getPlaylistAudioInfo } from '../../utils/service';
 
+const MOOD_HAPPY = {
+  EMOJI: '😎',
+  COLOR: 'pink',
+  TEXT: 'Single and ready to mingle',
+};
+const MOOD_SAD = {
+  EMOJI: '😕',
+  COLOR: 'purple',
+  TEXT: 'Single and ready to mingle',
+};
+const MOOD_ANGRY = {
+  EMOJI: '😤 ',
+  COLOR: 'gray',
+  TEXT: 'Single and ready to mingle',
+};
+const MOOD_PARTY = {
+  EMOJI: '💃🏽',
+  COLOR: 'orange',
+  TEXT: 'Single and ready to mingle',
+};
+
 export default class Overview extends Component {
   // TODO: fix showChat to true
   state = {
@@ -36,8 +57,24 @@ export default class Overview extends Component {
       });
     });
   }
+
+  getMood = () => {
+    console.log(this.state.playlistAttributes);
+    const valence = this.state.playlistAttributes.valence;
+    const energy = this.state.playlistAttributes.energy;
+    if (valence >= 0.5 && energy >= 0.5) {
+      return MOOD_PARTY;
+    } else if (valence >= 0.5 && energy < 0.5) {
+      return MOOD_HAPPY;
+    } else if (valence < 0.5 && energy < 0.5) {
+      return MOOD_SAD;
+    } else {
+      return MOOD_ANGRY;
+    }
+  };
+
   render() {
-    const { playlist, showChat, showOverview } = this.state;
+    const { playlist, showChat, showOverview, playlistAttributes } = this.state;
     const style = {
       chatText: {
         transition: 'opacity 1s ease-in-out',
@@ -50,7 +87,6 @@ export default class Overview extends Component {
         textAlign: 'left',
       },
     };
-
     const renderChat = () => (
       <div style={style.chatText}>
         <h2>
@@ -62,9 +98,15 @@ export default class Overview extends Component {
       </div>
     );
 
-    const emoji = '🤑';
-    const color = 'green';
-    const text = `Single and ready to mingle`;
+    let emoji = '🤑';
+    let color = 'green';
+    let text = `Single and ready to mingle`;
+    if (playlistAttributes) {
+      const mood = this.getMood();
+      emoji = mood.EMOJI;
+      color = mood.COLOR;
+      text = mood.TEXT;
+    }
 
     const renderOverview = () => (
       <div style={style.overview}>
