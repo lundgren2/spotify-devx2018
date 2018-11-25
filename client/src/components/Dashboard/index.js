@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
-import { SpotifyGraphQLClient } from 'spotify-graphql';
 import Container from '../ui/Container';
 import Emoji from '../Emoji';
 import Playlists from '../Playlists';
 import getAccessToken from '../../utils/getAccessToken';
 import { Redirect } from 'react-router-dom';
-import {
-  getUsersOwnPlaylists,
-  getTracksInPlaylist,
-  getAudioInfo,
-} from '../../utils/service';
+import { getUsersOwnPlaylists } from '../../utils/service';
 
 export default class Dashboard extends Component {
   state = {
@@ -25,59 +20,8 @@ export default class Dashboard extends Component {
     });
   }
 
-  async getAudioInfo() {
-    const { playlist, token } = this.state;
-    const entrys = await getTracksInPlaylist(playlist[0].id, token);
-    const trackIds = entrys.map(entry => entry.track.id);
-    const audioInfoList = await getAudioInfo(trackIds, token);
-    return audioInfoList;
-  }
-
   render() {
-    //     SpotifyGraphQLClient(config)
-    //       .query(
-    //         `
-    //   {
-    //     user(id: "11879785") {
-    //       playlists {
-    //         name
-    //         tracks {
-    //           track {
-    //             id
-    //             name
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // `
-    // )
-    // .then(executionResult => {
-    //   if (executionResult.errors) {
-    //     console.log('error');
-    //     console.error(JSON.stringify(executionResult.errors));
-    //   } else {
-    //     console.log('success');
-    //     this.setState({ playlists: executionResult.data.user.playlists });
-    //     console.log(JSON.stringify(executionResult.data));
-    //   }
-    // });
-
-    const { redirect, playlist } = this.state;
-    if (playlist) {
-      const audioInfoList = this.getAudioInfo();
-      audioInfoList.then(json => {
-        console.log(json);
-      });
-
-      // getTracksInPlaylist(playlist[0].id, token).then(entrys => {
-      //   const trackIds = entrys.map(entry => entry.track.id);
-      //   getAudioInfo(trackIds, token).then(audioInfoList => {
-      //     console.log(audioInfoList);
-      //   })
-      //
-      // });
-    }
+    const { redirect, playlist, token } = this.state;
     return redirect ? (
       <Redirect to="/" />
     ) : (
@@ -86,7 +30,7 @@ export default class Dashboard extends Component {
           Who are you today?‍‍‍‍‍ <Emoji symbol="🤷" />
         </h2>
         <p>Pick one playlist that best matches your mood today!</p>
-        {playlist ? <Playlists items={playlist} /> : null}
+        {playlist ? <Playlists items={playlist} token={token} /> : null}
       </Container>
     );
   }
