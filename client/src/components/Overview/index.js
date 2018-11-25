@@ -46,14 +46,14 @@ export default class Overview extends Component {
           showChat: false,
           firstTime: false,
         });
-      }, 3500);
+      }, 1500);
 
     this.state.firstTime &&
       setTimeout(() => {
         this.setState({
           showOverview: true,
         });
-      }, 4000);
+      }, 2000);
     const playlist =
       this.props.location.state && this.props.location.state.playlist;
     const token = this.props.location.state && this.props.location.state.token;
