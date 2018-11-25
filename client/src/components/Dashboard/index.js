@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import Container from '../ui/Container';
 import Emoji from '../Emoji';
 import Playlists from '../Playlists';
 import getAccessToken from '../../utils/getAccessToken';
-import Button from '../ui/Button';
-import {
-  getUsersOwnPlaylists,
-  getTracksInPlaylist,
-  getAudioInfo,
-} from '../../utils/service';
+import { getUsersOwnPlaylists } from '../../utils/service';
 
 export default class Dashboard extends Component {
   state = {
@@ -26,7 +21,6 @@ export default class Dashboard extends Component {
   }
 
   render() {
-
     const { redirect, playlist, token } = this.state;
     return redirect ? (
       <Redirect to="/" />
@@ -37,10 +31,6 @@ export default class Dashboard extends Component {
         </h2>
         <p>Pick one playlist that best matches your mood today!</p>
         {playlist ? <Playlists items={playlist} token={token} /> : null}
-        <br />
-        <Link to={'/overview'}>
-          <Button>Next</Button>
-        </Link>
       </Container>
     );
   }
