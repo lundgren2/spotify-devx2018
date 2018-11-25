@@ -131,13 +131,15 @@ export default class Overview extends Component {
             style={{
               color: styles.colors.gray,
               fontSize: 28,
+              marginTop: 8,
+              paddingBottom: 4,
               borderBottom: '1px solid #ccc',
               width: '100%',
             }}
           >
             Playlist information
           </div>
-          <h3 style={{ margin: '18px 0' }}>{playlistName}</h3>
+          <h3 style={{ margin: '14px 0' }}>{playlistName}</h3>
           <Box
             display="flex"
             flexDirection="row"
@@ -207,6 +209,7 @@ export default class Overview extends Component {
             >
               Select your status
             </b>
+            <br />
             <br />
           </div>
           <div onClick={() => this.setState({ text: TEXT_1 })}>
