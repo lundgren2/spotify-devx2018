@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Container from '../ui/Container';
 import Emoji from '../Emoji';
-import Button from '../ui/Button';
+import Button, { StatusButton } from '../ui/Button';
 import { getPlaylistAudioInfo } from '../../utils/service';
 import { Box } from '@smooth-ui/core-em';
 import styles from '../../styles';
@@ -33,23 +33,27 @@ export default class Overview extends Component {
   state = {
     playlist: null,
     showChat: true,
-    showOverview: true,
+    showOverview: false,
     playlistAttributes: null,
     text: '',
+    firstTime: true,
   };
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({
-        showChat: false,
-      });
-    }, 3500);
+    this.state.firstTime &&
+      setTimeout(() => {
+        this.setState({
+          showChat: false,
+          firstTime: false,
+        });
+      }, 3500);
 
-    setTimeout(() => {
-      this.setState({
-        showOverview: true,
-      });
-    }, 4000);
+    this.state.firstTime &&
+      setTimeout(() => {
+        this.setState({
+          showOverview: true,
+        });
+      }, 4000);
     const playlist =
       this.props.location.state && this.props.location.state.playlist;
     const token = this.props.location.state && this.props.location.state.token;
@@ -101,7 +105,9 @@ export default class Overview extends Component {
           Oh nice! <Emoji symbol="🥳" />
         </h2>
         <p>
-          So you feel like your playlist <b>{playlist && playlist.name}?</b>‍‍‍‍
+          So you feel like your playlist
+          <br />{' '}
+          <b style={{ fontSize: 32 }}>{playlist && `${playlist.name} ?`}</b>‍‍‍‍
         </p>
       </div>
     );
@@ -184,10 +190,32 @@ export default class Overview extends Component {
               )}
             </Box>
           </Box>
-          <div style={{ textAlign: 'center' }}>
-            <b style={{ fontSize: 16 }}>Your emoji today:</b>
+          <div style={{ textAlign: 'center', positin: 'relative' }}>
+            <b style={{ fontSize: 16 }}>
+              Your emoji today based on your
+              <br /> playlist:
+            </b>
             <Emoji symbol={emoji} /> <br />
-            <b>Your status:</b> Single
+            <b
+              style={{
+                color: '#555',
+                fontSize: 12,
+                textTransform: 'uppercase',
+                fontWeight: 'bold',
+              }}
+            >
+              Select your status
+            </b>
+            <br />
+          </div>
+          <div onClick={() => this.setState({ text: TEXT_1 })}>
+            <StatusButton>{TEXT_1}</StatusButton>
+          </div>
+          <div onClick={() => this.setState({ text: TEXT_2 })}>
+            <StatusButton>{TEXT_2}</StatusButton>
+          </div>
+          <div onClick={() => this.setState({ text: TEXT_3 })}>
+            <StatusButton>{TEXT_3}</StatusButton>
           </div>
           <Link
             to={{
@@ -198,19 +226,6 @@ export default class Overview extends Component {
             <br />
             <Button>Find friends</Button>
           </Link>
-          <br />
-          <br />
-          <div onClick={() => this.setState({ text: TEXT_1 })}>
-            <Button>{TEXT_1}</Button>
-          </div>
-          <br />
-          <div onClick={() => this.setState({ text: TEXT_2 })}>
-            <Button>{TEXT_2}</Button>
-          </div>
-          <br />
-          <div onClick={() => this.setState({ text: TEXT_3 })}>
-            <Button>{TEXT_3}</Button>
-          </div>
         </div>
       );
     };
