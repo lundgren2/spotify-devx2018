@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Container from '../ui/Container';
-import fakePlaylist from './fakePlaylist';
 import Emoji from '../Emoji';
 import Button from '../ui/Button';
 import { getPlaylistAudioInfo } from '../../utils/service';
@@ -27,7 +26,6 @@ export default class Overview extends Component {
         showOverview: true,
       });
     }, 4000);
-
     const playlist =
       this.props.location.state && this.props.location.state.playlist;
     const token = this.props.location.state && this.props.location.state.token;
