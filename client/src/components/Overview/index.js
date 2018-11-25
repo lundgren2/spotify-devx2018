@@ -40,10 +40,9 @@ export default class Overview extends Component {
     });
   }
   render() {
-    const { playlist, showChat, showOverview } = this.state;
-    // const playlistImage = this.state.playlist ? playlist.images[0].url : '';
-
+    const { playlist, playlistAttributes, showChat, showOverview } = this.state;
     console.log(playlist);
+    console.log(playlistAttributes);
     const style = {
       chatText: {
         transition: 'opacity 1s ease-in-out',
@@ -75,10 +74,22 @@ export default class Overview extends Component {
     const renderOverview = () => {
       const playlistName = playlist && playlist.name;
       const playlistImg = playlist && playlist.images[0].url;
+      const playlistAttr = playlistAttributes ? playlistAttributes : {};
 
       return (
         <div style={style.overview}>
-          Here is some information about your playlist
+          <div
+            style={{
+              color: styles.colors.gray,
+              fontSize: 28,
+              paddingBottom: 8,
+              borderBottom: '1px solid #ccc',
+              width: '100%',
+            }}
+          >
+            Playlist information
+          </div>
+
           <h3>{playlistName}</h3>
           <Box
             display="flex"
@@ -96,13 +107,17 @@ export default class Overview extends Component {
                 style={{ borderRadius: 8 }}
               />
             </Box>
-            <Box width={'100%'} ml={2}>
+            <Box width={'100%'} px={2}>
               <ul>
                 <li>
-                  <b>BPM:</b> 128bpm
+                  <b>Tempo:</b> {Math.floor(playlistAttr.tempo)}bpm
                 </li>
                 <li>
-                  <b>Emotion:</b> Fire <Emoji symbol="🔥" />
+                  <b>Energy:</b> {Math.floor(playlistAttr.energy * 100)} %
+                </li>
+                <li>
+                  <b>Danceability:</b>{' '}
+                  {Math.floor(playlistAttr.danceability * 100)}%
                 </li>
               </ul>
             </Box>
@@ -113,6 +128,7 @@ export default class Overview extends Component {
               state: { emoji: emoji, color: color, text: text },
             }}
           >
+            <br />
             <Button>Find friends</Button>
           </Link>
         </div>
