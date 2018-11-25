@@ -248,6 +248,13 @@ export default class Overview extends Component {
             <br />
             <Button>Find friends</Button>
           </div>
+          <Link
+            to={{
+              pathname: '/dashboard',
+            }}
+          >
+            <button>Back</button>
+          </Link>
         </div>
       );
     };
