@@ -4,10 +4,16 @@ import Container from '../ui/Container';
 import fakePlaylist from './fakePlaylist';
 import Emoji from '../Emoji';
 import Button from '../ui/Button';
+import { getPlaylistAudioInfo } from '../../utils/service';
 
 export default class Overview extends Component {
   // TODO: fix showChat to true
-  state = { playlist: fakePlaylist, showChat: true, showOverview: true };
+  state = {
+    playlist: null,
+    showChat: true,
+    showOverview: true,
+    playlistAttributes: null,
+  };
 
   componentDidMount() {
     setTimeout(() => {
@@ -21,11 +27,19 @@ export default class Overview extends Component {
         showOverview: true,
       });
     }, 4000);
+
+    const playlist =
+      this.props.location.state && this.props.location.state.playlist;
+    const token = this.props.location.state && this.props.location.state.token;
+    getPlaylistAudioInfo(playlist, token).then(playlistAttributes => {
+      this.setState({
+        playlistAttributes: playlistAttributes,
+        playlist: playlist,
+      });
+    });
   }
   render() {
     const { playlist, showChat, showOverview } = this.state;
-    console.log(playlist);
-
     const style = {
       chatText: {
         transition: 'opacity 1s ease-in-out',
@@ -45,7 +59,7 @@ export default class Overview extends Component {
           Oh nice! <Emoji symbol="🥳" />
         </h2>
         <p>
-          So you feel like your playlist <b>{playlist.name}?</b>‍‍‍‍
+          So you feel like your playlist <b>{playlist && playlist.name}?</b>‍‍‍‍
         </p>
       </div>
     );
@@ -57,7 +71,7 @@ export default class Overview extends Component {
     const renderOverview = () => (
       <div style={style.overview}>
         Here is some information about your playlist
-        <h3>{playlist.name}</h3>
+        <h3>{playlist && playlist.name}</h3>
         <ul>
           <li>
             <b>BPM:</b> 128bpm
