@@ -1,7 +1,6 @@
 import queryString from 'query-string';
 import axios from 'axios';
-
-const redirect_uri = 'http://localhost:3000/dashboard';
+import config from '../config';
 
 async function getAccessToken(queryParams) {
   const parsed = queryString.parse(queryParams);
@@ -13,7 +12,7 @@ async function getAccessToken(queryParams) {
     let tokens = await axios.get('http://localhost:8888/callback', {
       params: {
         code: parsed.code,
-        redirect_uri: redirect_uri,
+        redirect_uri: config.REDIRECT_URI,
       },
     });
     const token = tokens.data.access_token;
