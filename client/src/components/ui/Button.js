@@ -11,7 +11,7 @@ const StyledButton = styled(SmoothButton)({
   fontWeight: 'bold',
   fontSize: 24,
   background: styles.colors.yellow,
-  color: styles.colors.fontColor,
+  color: styles.colors.someBlue,
   padding: '0 30px',
   width: '100%',
   // maxWidth: '440px',

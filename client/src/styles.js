@@ -1,5 +1,5 @@
 const colors = {
-  brandColor: 'rgb(32, 0, 255)',
+  brandColor: 'rgb(31, 40, 129)',
   yellow: '#EAD50F',
   backgroundColor: 'white',
   fontColor: '#222',
