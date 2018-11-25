@@ -11,7 +11,8 @@ const Container = props => {
       m={20}
       display="flex"
       flexDirection="column"
-      backgroundColor="#fff"
+      backgroundColor={props.bg ? props.bg : '#fff'}
+      color={props.color && props.color}
       borderRadius={8}
       boxShadow="0 4px 12px 0 rgba(0, 0, 0, .06)"
       position="relative"

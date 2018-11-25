@@ -4,7 +4,7 @@ import { Box } from '@smooth-ui/core-em';
 import Container from './ui/Container';
 import styles from '../styles';
 import config from '../config';
-
+import logo from '../logo.svg';
 // const scope = ''; // to be added
 const URL = `${config.BASE}/?client_id=${config.CLIENT_ID}&response_type=${
   config.RESPONSIVE_TYPE
@@ -13,9 +13,10 @@ const URL = `${config.BASE}/?client_id=${config.CLIENT_ID}&response_type=${
 class Login extends Component {
   render() {
     return (
-      <Container>
-        <Box p={20} backgroundColor="white">
+      <Container bg={styles.colors.brandColor} color={styles.colors.yellow}>
+        <Box p={20}>
           <Box pt={20} mb={80}>
+            <img src={logo} alt="socify" width="250" />
             <h1>Socify</h1>
           </Box>
           <p style={{ color: styles.colors.gray }}>
