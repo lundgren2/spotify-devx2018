@@ -1,6 +1,5 @@
 import React from 'react';
 import Emoji from './Emoji';
-import { Link } from 'react-router-dom';
 
 const MyEmotion = props => {
   const { emoji, color, text } = props.location.state;
@@ -21,7 +20,7 @@ const MyEmotion = props => {
   };
 
   return (
-    <Link to="/overview">
+    <div onClick={() => props.history.goBack()}>
       <div style={style.container}>
         <div>
           <Emoji symbol={emoji} style={{ display: 'block' }} />
@@ -29,7 +28,7 @@ const MyEmotion = props => {
           <h1 style={{ fontSize: 84, color: 'white' }}>{text}</h1>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
