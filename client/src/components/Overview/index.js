@@ -245,7 +245,6 @@ export default class Overview extends Component {
             <StatusButton>{TEXT_3}</StatusButton>
           </div>
           <div onClick={() => this.linkToEmotion(emoji, color)}>
-            <br />
             <Button>Find friends</Button>
           </div>
           <Link
@@ -260,10 +259,12 @@ export default class Overview extends Component {
                 padding: 8,
                 textTransform: 'uppercase',
                 fontWeight: 'bold',
+                textAlign: 'center',
               }}
             >
               Change playlist
             </span>
+            <br />
           </Link>
         </div>
       );
