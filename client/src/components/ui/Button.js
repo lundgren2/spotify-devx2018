@@ -5,7 +5,7 @@ import { white, black } from 'ansi-colors';
 import styles from '../../styles';
 
 const StyledButton = styled(SmoothButton)({
-  height: 84,
+  height: 76,
   borderRadius: 8,
   border: 0,
   fontWeight: 'bold',

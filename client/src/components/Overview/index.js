@@ -121,15 +121,13 @@ export default class Overview extends Component {
             style={{
               color: styles.colors.gray,
               fontSize: 28,
-              paddingBottom: 8,
               borderBottom: '1px solid #ccc',
               width: '100%',
             }}
           >
             Playlist information
           </div>
-
-          <h3>{playlistName}</h3>
+          <h3 style={{ margin: '18px 0' }}>{playlistName}</h3>
           <Box
             display="flex"
             flexDirection="row"
@@ -137,17 +135,18 @@ export default class Overview extends Component {
             backgroundColor="#eee"
             borderRadius={12}
             p={1}
+            maxWidth={'100%'}
           >
             <Box borderRadius={12}>
               <img
                 src={playlistImg}
                 alt={playlistName}
-                height="200"
+                height="120"
                 style={{ borderRadius: 8 }}
               />
             </Box>
             <Box width={'100%'} px={2}>
-              <ul>
+              <ul style={{ fontSize: 16, margin: '0px 0' }}>
                 <li>
                   <b>Tempo:</b> {Math.floor(playlistAttr.tempo)}bpm
                 </li>
@@ -158,12 +157,34 @@ export default class Overview extends Component {
                   <b>Danceability:</b>{' '}
                   {Math.floor(playlistAttr.danceability * 100)}%
                 </li>
+                <li
+                  style={{
+                    color: '#888',
+                    fontSize: 12,
+                    textTransform: 'uppercase',
+                    fontWeight: 'bold',
+                  }}
+                >
+                  Specs
+                </li>
               </ul>
-              <b>Your Emoji today:</b>
-              <br />
-              <Emoji symbol={emoji} />{' '}
+              {playlistAttr.tempo > 130 ? (
+                <Emoji symbol="🏎💨" />
+              ) : (
+                <Emoji symbol="👵" />
+              )}
+              {playlistAttr.energy > 0.7 ? (
+                <Emoji symbol="🔥" />
+              ) : (
+                <Emoji symbol="☕️" />
+              )}
             </Box>
           </Box>
+          <div style={{ textAlign: 'center' }}>
+            <b style={{ fontSize: 16 }}>Your emoji today:</b>
+            <Emoji symbol={emoji} /> <br />
+            <b>Your status:</b> Single
+          </div>
           <Link
             to={{
               pathname: '/emotion',
