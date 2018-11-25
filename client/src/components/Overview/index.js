@@ -120,6 +120,9 @@ export default class Overview extends Component {
                   {Math.floor(playlistAttr.danceability * 100)}%
                 </li>
               </ul>
+              <b>Your Emoji today:</b>
+              <br />
+              <Emoji symbol={emoji} />{' '}
             </Box>
           </Box>
           <Link
