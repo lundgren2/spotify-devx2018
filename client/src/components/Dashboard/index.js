@@ -20,8 +20,15 @@ export default class Dashboard extends Component {
     });
   }
 
+  linkToOverview = playlist => {
+    this.props.history.push({
+      pathname: '/overview',
+      state: { playlist: playlist, token: this.state.token },
+    });
+  };
+
   render() {
-    const { redirect, playlist, token } = this.state;
+    const { redirect, playlist } = this.state;
     return redirect ? (
       <Redirect to="/" />
     ) : (
@@ -30,7 +37,9 @@ export default class Dashboard extends Component {
           Who are you today?‍‍‍‍‍ <Emoji symbol="🤷" />
         </h2>
         <p>Pick one playlist that best matches your mood today!</p>
-        {playlist ? <Playlists items={playlist} token={token} /> : null}
+        {playlist ? (
+          <Playlists linkToOverview={this.linkToOverview} items={playlist} />
+        ) : null}
       </Container>
     );
   }
