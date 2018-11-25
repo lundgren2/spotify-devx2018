@@ -8,25 +8,25 @@ import { Box } from '@smooth-ui/core-em';
 import styles from '../../styles';
 
 const MOOD_HAPPY = {
-  EMOJI: '😎',
-  COLOR: 'pink',
+  EMOJI: '😎🤗',
+  COLOR: 'rgba(185, 36, 59, 1)',
 };
 const MOOD_SAD = {
-  EMOJI: '😕',
-  COLOR: 'purple',
+  EMOJI: '😕😢',
+  COLOR: 'rgba(123, 31, 162, 1)',
 };
 const MOOD_ANGRY = {
-  EMOJI: '😤 ',
-  COLOR: 'gray',
+  EMOJI: '😤😠',
+  COLOR: 'rgba(39, 38, 38, 1)',
 };
 const MOOD_PARTY = {
-  EMOJI: '💃🏽',
-  COLOR: 'orange',
+  EMOJI: '🥳🕺',
+  COLOR: 'rgba(220, 112, 43, 1)',
 };
 
 const TEXT_1 = 'Single and ready to mingle';
-const TEXT_2 = 'Single and ready to mingle 2';
-const TEXT_3 = 'Single and ready to mingle 3';
+const TEXT_2 = 'I want to hang out tonight';
+const TEXT_3 = 'I like pets';
 
 export default class Overview extends Component {
   // TODO: fix showChat to true
@@ -154,13 +154,15 @@ export default class Overview extends Component {
             style={{
               color: styles.colors.gray,
               fontSize: 28,
+              marginTop: 8,
+              paddingBottom: 4,
               borderBottom: '1px solid #ccc',
               width: '100%',
             }}
           >
             Playlist information
           </div>
-          <h3 style={{ margin: '18px 0' }}>{playlistName}</h3>
+          <h3 style={{ margin: '14px 0' }}>{playlistName}</h3>
           <Box
             display="flex"
             flexDirection="row"
@@ -196,6 +198,7 @@ export default class Overview extends Component {
                     fontSize: 12,
                     textTransform: 'uppercase',
                     fontWeight: 'bold',
+                    marginTop: 4,
                   }}
                 >
                   Specs
@@ -229,6 +232,7 @@ export default class Overview extends Component {
             >
               Select your status
             </b>
+            <br />
             <br />
           </div>
           <div onClick={() => this.setState({ text: TEXT_1 })}>
