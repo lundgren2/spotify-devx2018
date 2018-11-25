@@ -1,6 +1,9 @@
 # Socify
 
+![Socify](https://raw.githubusercontent.com/lundgren2/spotify-devx2018/master/client/public/app-preview.png)
+
 ### A project for devX 2018
+
 - 24h hackathon
 - Live preview: [https://socify-app.herokuapp.com](https://socify-app.herokuapp.com)
 
@@ -12,6 +15,7 @@
 - Node.js
 
 **Tools**
+
 - React.js
 - React Router
 - Spotify SDK
