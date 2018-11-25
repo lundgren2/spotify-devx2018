@@ -50,6 +50,10 @@ export default class Overview extends Component {
       </div>
     );
 
+    const emoji = '🤑';
+    const color = 'green';
+    const text = `Single and ready to mingle`;
+
     const renderOverview = () => (
       <div style={style.overview}>
         Here is some information about your playlist
@@ -62,7 +66,13 @@ export default class Overview extends Component {
             <b>Emotion:</b> Fire <Emoji symbol="🔥" />
           </li>
         </ul>
-        <Link to={'/emotion'}>
+        {/* <Link to={`/emotion/${emoji}/$`} */}
+        <Link
+          to={{
+            pathname: '/emotion',
+            state: { emoji: emoji, color: color, text: text },
+          }}
+        >
           <Button>Find friends</Button>
         </Link>
       </div>

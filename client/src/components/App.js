@@ -33,11 +33,7 @@ class App extends Component {
               <Route exact path="/dashboard" component={Dashboard} />
               <Route exact path="/overview" component={Overview} />
             </div>
-            <Route
-              exact
-              path="/emotion"
-              component={() => <MyEmotion emoji="🔥" color="orange" />}
-            />
+            <Route path="/emotion" exact component={MyEmotion} />
           </>
         </Router>
       </div>
