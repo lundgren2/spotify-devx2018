@@ -25,8 +25,8 @@ const MOOD_PARTY = {
 };
 
 const TEXT_1 = 'Single and ready to mingle';
-const TEXT_2 = 'Single and ready to mingle 2';
-const TEXT_3 = 'Single and ready to mingle 3';
+const TEXT_2 = 'I want to hang out tonight';
+const TEXT_3 = 'I like pets';
 
 export default class Overview extends Component {
   // TODO: fix showChat to true
@@ -173,6 +173,7 @@ export default class Overview extends Component {
                     fontSize: 12,
                     textTransform: 'uppercase',
                     fontWeight: 'bold',
+                    marginTop: 4,
                   }}
                 >
                   Specs
