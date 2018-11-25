@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
-import Checkbox from '@material-ui/core/Checkbox';
-import { getPlaylistAudioInfo } from '../../utils/service';
+import { Redirect } from 'react-router-dom';
 
 const styles = theme => ({
   root: {
@@ -22,48 +20,33 @@ const styles = theme => ({
 
 class CheckboxListSecondary extends React.Component {
   state = {
-    checked: [1],
+    chosenPlaylist: null,
   };
 
-  handleToggle = value => () => {
-    const { checked } = this.state;
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-
-    this.setState({
-      checked: newChecked,
-    });
+  handleClick = chosenPlaylist => {
+    this.setState({ chosenPlaylist });
   };
 
   render() {
     const { classes, items, token } = this.props;
+    const { chosenPlaylist } = this.state;
+    if (chosenPlaylist) {
+      return (
+        <Redirect
+          to={{
+            pathname: '/overview',
+            state: { playlist: chosenPlaylist, token: token },
+          }}
+        />
+      );
+    }
     return (
       <div className={classes.root}>
         <List dense>
           {items.map((item, index) => (
-            <ListItem
-              key={index}
-              onClick={() => {
-                getPlaylistAudioInfo(item, token).then(array => {
-                  console.log(array);
-                });
-              }}
-              button
-            >
+            <ListItem key={index} onClick={() => this.handleClick(item)} button>
               <Avatar alt="Remy Sharp" src={item.images[0].url} />
               <ListItemText primary={`${item.name}`} />
-              <ListItemSecondaryAction />
-              <Checkbox
-                checked={this.state.checked.indexOf(item) !== -1}
-                tabIndex={-1}
-                disableRipple
-              />
             </ListItem>
           ))}
         </List>
