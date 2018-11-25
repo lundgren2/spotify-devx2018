@@ -7,6 +7,27 @@ import { getPlaylistAudioInfo } from '../../utils/service';
 import { Box } from '@smooth-ui/core-em';
 import styles from '../../styles';
 
+const MOOD_HAPPY = {
+  EMOJI: '😎',
+  COLOR: 'pink',
+  TEXT: 'Single and ready to mingle',
+};
+const MOOD_SAD = {
+  EMOJI: '😕',
+  COLOR: 'purple',
+  TEXT: 'Single and ready to mingle',
+};
+const MOOD_ANGRY = {
+  EMOJI: '😤 ',
+  COLOR: 'gray',
+  TEXT: 'Single and ready to mingle',
+};
+const MOOD_PARTY = {
+  EMOJI: '💃🏽',
+  COLOR: 'orange',
+  TEXT: 'Single and ready to mingle',
+};
+
 export default class Overview extends Component {
   // TODO: fix showChat to true
   state = {
@@ -38,10 +59,24 @@ export default class Overview extends Component {
       });
     });
   }
+
+  getMood = () => {
+    console.log(this.state.playlistAttributes);
+    const valence = this.state.playlistAttributes.valence;
+    const energy = this.state.playlistAttributes.energy;
+    if (valence >= 0.5 && energy >= 0.5) {
+      return MOOD_PARTY;
+    } else if (valence >= 0.5 && energy < 0.5) {
+      return MOOD_HAPPY;
+    } else if (valence < 0.5 && energy < 0.5) {
+      return MOOD_SAD;
+    } else {
+      return MOOD_ANGRY;
+    }
+  };
+
   render() {
     const { playlist, playlistAttributes, showChat, showOverview } = this.state;
-    console.log(playlist);
-    console.log(playlistAttributes);
     const style = {
       chatText: {
         transition: 'opacity 1s ease-in-out',
@@ -54,7 +89,6 @@ export default class Overview extends Component {
         textAlign: 'left',
       },
     };
-
     const renderChat = () => (
       <div style={style.chatText}>
         <h2>
@@ -66,9 +100,15 @@ export default class Overview extends Component {
       </div>
     );
 
-    const emoji = '🤑';
-    const color = 'green';
-    const text = `Single and ready to mingle`;
+    let emoji = '🤑';
+    let color = 'green';
+    let text = `Single and ready to mingle`;
+    if (playlistAttributes) {
+      const mood = this.getMood();
+      emoji = mood.EMOJI;
+      color = mood.COLOR;
+      text = mood.TEXT;
+    }
 
     const renderOverview = () => {
       const playlistName = playlist && playlist.name;
