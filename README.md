@@ -1,6 +1,8 @@
 # Socify
 
 ### A project for devX 2018
+- 24h hackathon
+- Live preview: [https://socify-app.herokuapp.com](https://socify-app.herokuapp.com)
 
 ## Setup
 
@@ -8,6 +10,12 @@
 
 - Yarn
 - Node.js
+
+**Tools**
+- React.js
+- React Router
+- Spotify SDK
+- emotion
 
 ### Client
 
