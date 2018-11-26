@@ -18,8 +18,8 @@ const style = {
     justifyContent: 'center',
   },
   container: {
-    maxWidth: '100%',
-    width: '480px',
+    // width: '90%',
+    // maxWidth: '480px',
   },
 };
 
