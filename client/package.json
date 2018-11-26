@@ -1,6 +1,6 @@
 {
-  "name": "client",
-  "version": "0.1.0",
+  "name": "socify-app",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
     "@emotion/core": "^10.0.0-beta.13",
@@ -20,7 +20,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "git push heroku master"
   },
   "eslintConfig": {
     "extends": "react-app"
