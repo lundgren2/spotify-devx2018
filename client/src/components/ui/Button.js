@@ -16,11 +16,14 @@ const StyledButton = styled(SmoothButton)({
 });
 
 const Button = props => {
-  return <StyledButton variant="success">{props.children}</StyledButton>;
+  return (
+    <StyledButton variant="success" {...props}>
+      {props.children}
+    </StyledButton>
+  );
 };
 
 const StyledStatusButton = styled(SmoothButton)({
-  // height: 24,
   borderRadius: 8,
   border: 0,
   fontWeight: 'bold',
@@ -37,7 +40,7 @@ const StyledStatusButton = styled(SmoothButton)({
 
 export const StatusButton = props => {
   return (
-    <StyledStatusButton variant="secondary">
+    <StyledStatusButton variant="secondary" {...props}>
       {props.children}
     </StyledStatusButton>
   );

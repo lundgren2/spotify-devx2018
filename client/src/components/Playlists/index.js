@@ -27,12 +27,17 @@ class CheckboxListSecondary extends React.Component {
     return (
       <div className={classes.root}>
         <List dense>
-          {items.map((item, index) => (
-            <ListItem key={index} onClick={() => this.handleClick(item)} button>
-              <Avatar alt="Remy Sharp" src={item.images[0].url} />
-              <ListItemText primary={`${item.name}`} />
-            </ListItem>
-          ))}
+          {items &&
+            items.map((item, index) => (
+              <ListItem
+                key={index}
+                onClick={() => this.handleClick(item)}
+                button
+              >
+                <Avatar alt="Remy Sharp" src={item.images[0].url} />
+                <ListItemText primary={`${item.name}`} />
+              </ListItem>
+            ))}
         </List>
       </div>
     );

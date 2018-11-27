@@ -3,19 +3,22 @@ import Button from './ui/Button';
 import { Box } from '@smooth-ui/core-em';
 import Container from './ui/Container';
 import styles from '../styles';
-import config from '../config';
 import logo from '../logo.svg';
 
-const URL = `${config.BASE}/?client_id=${config.CLIENT_ID}&response_type=${
-  config.RESPONSIVE_TYPE
-}&redirect_uri=${config.REDIRECT_URI}`;
-
 class Login extends Component {
+  onClick = () => {
+    const LOGIN_URL = window.location.href.includes('localhost')
+      ? 'http://localhost:8888/login'
+      : 'https://socify-server.herokuapp.com/login';
+
+    window.location.href = LOGIN_URL;
+  };
+
   render() {
     return (
       <Container bg={'#fff'} color={'#222'}>
         <Box p={20}>
-          <Box pt={20} mb={80}>
+          <Box>
             <img
               src={logo}
               alt="socify"
@@ -27,11 +30,13 @@ class Login extends Component {
           <p style={{ color: styles.colors.gray }}>
             Find friends based on your current mood.
           </p>
-          <a href={URL}>
-            <Button variant="success" backgroundColor={'#1ed760'}>
-              Login with Spotify
-            </Button>
-          </a>
+          <Button
+            variant="success"
+            backgroundColor={'#1ed760'}
+            onClick={this.onClick}
+          >
+            Login with Spotify
+          </Button>
         </Box>
       </Container>
     );
