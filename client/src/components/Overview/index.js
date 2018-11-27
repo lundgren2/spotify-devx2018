@@ -1,37 +1,17 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Container from '../ui/Container';
-import Emoji from '../Emoji';
-import Button, { StatusButton } from '../ui/Button';
 import { getPlaylistAudioInfo } from '../../utils/service';
 import { Box } from '@smooth-ui/core-em';
+import Emoji from '../Emoji';
+import Button, { StatusButton } from '../ui/Button';
+import Container from '../ui/Container';
 import styles from '../../styles';
 
+import { MOOD_HAPPY, MOOD_SAD, MOOD_ANGRY, MOOD_PARTY } from './mood';
+import { STATUS_1, STATUS_2, STATUS_3 } from './status';
+
 // TODO: Refactor this chaos Component
-
-const MOOD_HAPPY = {
-  EMOJI: '😎🤗',
-  COLOR: 'rgba(185, 36, 59, 1)',
-};
-const MOOD_SAD = {
-  EMOJI: '😕😢',
-  COLOR: 'rgba(123, 31, 162, 1)',
-};
-const MOOD_ANGRY = {
-  EMOJI: '😤😠',
-  COLOR: 'rgba(39, 38, 38, 1)',
-};
-const MOOD_PARTY = {
-  EMOJI: '🥳🕺',
-  COLOR: 'rgba(220, 112, 43, 1)',
-};
-
-const TEXT_1 = 'Single and ready to mingle';
-const TEXT_2 = 'I want to hang out tonight';
-const TEXT_3 = 'I like pets';
-
 export default class Overview extends Component {
-  // TODO: fix showChat to true
   state = {
     playlist: null,
     showChat: true,
@@ -39,7 +19,7 @@ export default class Overview extends Component {
     playlistAttributes: null,
     text: '',
     firstTime: true,
-    token: null,
+    token: localStorage.getItem('accessToken'),
   };
 
   componentDidMount() {
@@ -74,11 +54,10 @@ export default class Overview extends Component {
       playlist = this.props.location.state.playlist;
       token = this.props.location.state.token;
     }
-    getPlaylistAudioInfo(playlist, token).then(playlistAttributes => {
+    getPlaylistAudioInfo(playlist).then(playlistAttributes => {
       this.setState({
         playlistAttributes: playlistAttributes,
         playlist: playlist,
-        token: token,
       });
     });
   }
@@ -241,14 +220,14 @@ export default class Overview extends Component {
             <br />
             <br />
           </div>
-          <div onClick={() => this.setState({ text: TEXT_1 })}>
-            <StatusButton>{TEXT_1}</StatusButton>
+          <div onClick={() => this.setState({ text: STATUS_1 })}>
+            <StatusButton>{STATUS_1}</StatusButton>
           </div>
-          <div onClick={() => this.setState({ text: TEXT_2 })}>
-            <StatusButton>{TEXT_2}</StatusButton>
+          <div onClick={() => this.setState({ text: STATUS_2 })}>
+            <StatusButton>{STATUS_2}</StatusButton>
           </div>
-          <div onClick={() => this.setState({ text: TEXT_3 })}>
-            <StatusButton>{TEXT_3}</StatusButton>
+          <div onClick={() => this.setState({ text: STATUS_3 })}>
+            <StatusButton>{STATUS_3}</StatusButton>
           </div>
           <div onClick={() => this.linkToEmotion(emoji, color)}>
             <Button>Find friends</Button>
@@ -256,7 +235,7 @@ export default class Overview extends Component {
           <br />
           <Link
             to={{
-              pathname: '/dashboard',
+              pathname: '/',
             }}
           >
             <span
