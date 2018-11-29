@@ -36,8 +36,8 @@ const StyledStatusButton = styled(SmoothButton)({
   padding: '12px 14px',
   marginBottom: '14px',
   width: '100%',
-  ':focus': {
-    background: '#222',
+  ':focus, :focus': {
+    background: '#222 !important',
   },
   boxShadow: styles.boxShadow,
   '@media(max-width: 700px)': {
