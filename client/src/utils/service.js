@@ -11,7 +11,7 @@ export async function refreshAccessToken() {
   console.log(refreshToken);
   const response = await axios.get(`${config.BACKEND_URI}/refresh_token`, {
     params: {
-      refreshToken,
+      refresh_token: refreshToken,
     },
   });
   console.log(response);
@@ -32,7 +32,6 @@ export async function getUsersOwnPlaylists(limit) {
   } catch (error) {
     console.log(error);
     refreshAccessToken();
-    getUsersOwnPlaylists(limit);
   }
   return playlist != null ? playlist.data.items : null;
 }
@@ -51,7 +50,6 @@ async function getTracksInPlaylist(playlist_id) {
   } catch (error) {
     console.log(error);
     refreshAccessToken();
-    // getTracksInPlaylist(playlist_id);
   }
   return tracks != null ? tracks.data.items : null;
 }
