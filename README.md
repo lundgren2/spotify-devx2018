@@ -1,6 +1,6 @@
 # Socify
 
-![Socify](https://raw.githubusercontent.com/lundgren2/spotify-devx2018/master/client/public/app-preview.png)
+<img src="https://raw.githubusercontent.com/lundgren2/spotify-devx2018/master/public/app-preview.png" alt="socify-preciew" style="width:640px;"/>
 
 ### A project for devX 2018
 
@@ -25,8 +25,3 @@
 
 1. `cd client && yarn`
 2. run `yarn start`
-
-### Server
-
-1. `cd server && yarn`
-2. run `node server.js`
