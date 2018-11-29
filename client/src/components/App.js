@@ -9,14 +9,14 @@ import Login from './Login';
 import Overview from './Overview';
 import MyEmotion from './MyEmotion';
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      props.isAuthed ? <Component {...props} /> : <Redirect to="/login" />
-    }
-  />
-);
+// const PrivateRoute = ({ component: Component, ...rest }) => (
+//   <Route
+//     {...rest}
+//     render={props =>
+//       props.isAuthed ? <Component {...props} /> : <Redirect to="/login" />
+//     }
+//   />
+// );
 
 class App extends Component {
   state = {
@@ -26,29 +26,11 @@ class App extends Component {
 
   componentDidMount() {
     let parsed = queryString.parse(window.location.search);
-    let accessToken = parsed.access_token;
-    let refreshToken = parsed.refresh_token;
-    console.log(window.location.search);
-    console.log(accessToken);
-
-    if (accessToken) {
-      console.log('i Accesstoken');
-      localStorage.setItem('accessToken', accessToken);
-      localStorage.setItem('refreshToken', refreshToken);
+    if (parsed.access_token) {
+      localStorage.setItem('accessToken', parsed.access_token);
+      localStorage.setItem('refreshToken', parsed.refresh_token);
       this.setState({ isAuthed: true });
     }
-
-    // fetch('https://api.spotify.com/v1/me', {
-    //   headers: { Authorization: 'Bearer ' + accessToken },
-    // })
-    //   .then(response => response.json())
-    //   .then(data =>
-    //     this.setState({
-    //       user: {
-    //         name: data.display_name,
-    //       },
-    //     })
-    //   );
   }
 
   render() {
