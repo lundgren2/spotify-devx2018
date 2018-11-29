@@ -1,14 +1,29 @@
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+import config from '../config';
 
-const accessToken = localStorage.getItem('accessToken') || null;
+const accessToken = localStorage.getItem('accessToken');
+
+export async function refreshAccessToken() {
+  const refreshToken = localStorage.getItem('refreshToken');
+
+  if (!refreshToken) return;
+
+  console.log(refreshToken);
+  const response = await axios.get(`${config.BACKEND_URI}/refresh_token`, {
+    params: {
+      refreshToken,
+    },
+  });
+  console.log(response);
+
+  localStorage.setItem('accessToken', response.data.access_token);
+}
 
 export async function getUsersOwnPlaylists(limit) {
-  if (accessToken == null) return;
   let playlist;
 
   try {
-    playlist = await axios.get('https://api.spotify.com/v1/me/playlists', {
+    playlist = await axios.get(`${config.SPOTIFY_API}/me/playlists`, {
       params: {
         limit: limit,
       },
@@ -16,18 +31,17 @@ export async function getUsersOwnPlaylists(limit) {
     });
   } catch (error) {
     console.log(error);
-    return;
+    refreshAccessToken();
+    getUsersOwnPlaylists(limit);
   }
   return playlist != null ? playlist.data.items : null;
 }
 
-async function getTracksInPlaylist(playlist_id, token) {
-  if (accessToken == null) return;
+async function getTracksInPlaylist(playlist_id) {
   let tracks;
-
   try {
     tracks = await axios.get(
-      `https://api.spotify.com/v1/playlists/${playlist_id}/tracks`,
+      `${config.SPOTIFY_API}/playlists/${playlist_id}/tracks`,
       {
         headers: {
           Authorization: 'Bearer ' + accessToken,
@@ -36,23 +50,26 @@ async function getTracksInPlaylist(playlist_id, token) {
     );
   } catch (error) {
     console.log(error);
+    refreshAccessToken();
+    // getTracksInPlaylist(playlist_id);
   }
   return tracks != null ? tracks.data.items : null;
 }
 
-async function getAudioInfo(trackIdList, token) {
-  if (accessToken == null) return;
+async function getAudioInfo(trackIdList) {
   let audioInfo;
 
   try {
-    audioInfo = await axios.get('https://api.spotify.com/v1/audio-features', {
+    audioInfo = await axios.get(`${config.SPOTIFY_API}/audio-features`, {
       params: {
         ids: trackIdList.join(','),
       },
-      headers: { Authorization: 'Bearer ' + token },
+      headers: { Authorization: 'Bearer ' + accessToken },
     });
   } catch (error) {
     console.log(error);
+    refreshAccessToken();
+    // getAudioInfo(trackIdList);
   }
   return audioInfo != null ? audioInfo.data.audio_features : null;
 }
@@ -68,14 +85,12 @@ function calcAverageAttribute(attribute, audioInfoList) {
 }
 
 export async function getPlaylistAudioInfo(playlist) {
-  if (accessToken == null) return;
-
   // if this is an error, clear your localhost and start over!
-  const entrys = await getTracksInPlaylist(playlist.id, accessToken);
+  const entrys = await getTracksInPlaylist(playlist.id);
   const trackIds = entrys && entrys.map(entry => entry.track.id);
-  const audioInfoList = await getAudioInfo(trackIds, accessToken);
-
-  const valenceAverage = calcAverageAttribute('valence', audioInfoList);
+  const audioInfoList = await getAudioInfo(trackIds);
+  const valenceAverage =
+    audioInfoList && calcAverageAttribute('valence', audioInfoList);
   const energyAverage = calcAverageAttribute('energy', audioInfoList);
   const danceabilityAverage = calcAverageAttribute(
     'danceability',
