@@ -2,26 +2,27 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import queryString from 'query-string';
 import './App.css';
-
 import styles from '../styles';
 import Dashboard from './Dashboard';
 import Login from './Login';
 import Overview from './Overview';
-import MyEmotion from './MyEmotion';
 
-// const PrivateRoute = ({ component: Component, ...rest }) => (
-//   <Route
-//     {...rest}
-//     render={props =>
-//       props.isAuthed ? <Component {...props} /> : <Redirect to="/login" />
-//     }
-//   />
-// );
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      localStorage.getItem('accessToken') != null ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to="/login" />
+      )
+    }
+  />
+);
 
 class App extends Component {
   state = {
-    serverData: {},
-    isAuthed: false,
+    // isAuthed: false,
   };
 
   componentDidMount() {
@@ -34,16 +35,24 @@ class App extends Component {
   }
 
   render() {
-    const { isAuthed } = this.state;
+    const isAuthed = localStorage.getItem('accessToken') && true;
 
     return (
       <div style={styles.app}>
         <Router>
           <>
             <Route path="/login" component={Login} />
-            <Route exact path="/" component={Dashboard} isAuthed={isAuthed} />
-            <Route path="/overview" component={Overview} isAuthed={isAuthed} />
-            <Route path="/emotion" component={MyEmotion} isAuthed={isAuthed} />
+            <PrivateRoute
+              exact
+              path="/"
+              component={Dashboard}
+              isAuthed={isAuthed}
+            />
+            <PrivateRoute
+              path="/overview"
+              component={Overview}
+              isAuthed={isAuthed}
+            />
           </>
         </Router>
       </div>
