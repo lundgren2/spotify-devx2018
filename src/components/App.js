@@ -6,6 +6,7 @@ import styles from '../styles';
 import Dashboard from './Dashboard';
 import Login from './Login';
 import Overview from './Overview';
+import GitHubLogo from '../images/github';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -56,6 +57,14 @@ class App extends Component {
             />
           </>
         </Router>
+        <a
+          className="github"
+          href="https://github.com/lundgren2/spotify-devx2018"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <GitHubLogo width="200" />
+        </a>
       </div>
     );
   }
