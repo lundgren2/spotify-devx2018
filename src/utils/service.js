@@ -1,7 +1,10 @@
 import axios from 'axios';
 import config from '../config';
+import queryString from 'query-string';
 
-const accessToken = localStorage.getItem('accessToken');
+const accessToken =
+  localStorage.getItem('accessToken') ||
+  queryString.parse(window.location.search).access_token;
 
 export async function refreshAccessToken() {
   const refreshToken = localStorage.getItem('refreshToken');

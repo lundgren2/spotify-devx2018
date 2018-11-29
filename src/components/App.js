@@ -11,7 +11,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      localStorage.getItem('accessToken') != null ? (
+      localStorage.getItem('accessToken') != null ||
+      window.location.search.includes('access_token') ? (
         <Component {...props} />
       ) : (
         <Redirect to="/login" />
@@ -22,7 +23,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 
 class App extends Component {
   state = {
-    // isAuthed: false,
+    isAuthed: false,
   };
 
   componentDidMount() {
@@ -35,7 +36,7 @@ class App extends Component {
   }
 
   render() {
-    const isAuthed = localStorage.getItem('accessToken') && true;
+    const { isAuthed } = this.state;
 
     return (
       <div style={styles.app}>

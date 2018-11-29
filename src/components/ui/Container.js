@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'react-emotion';
-import { Box, background } from '@smooth-ui/core-em';
+import { Box } from '@smooth-ui/core-em';
 
 const StyledBox = styled(Box)({
   '@media(max-width: 700px)': {
     margin: '10px !important',
-    padding: '10px !important',
+    padding: '15px !important',
     background: 'red',
   },
 });
