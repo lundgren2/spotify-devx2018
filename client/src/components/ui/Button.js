@@ -13,6 +13,10 @@ const StyledButton = styled(SmoothButton)({
   color: styles.colors.someBlue,
   width: '100%',
   boxShadow: styles.boxShadow,
+  '@media(max-width: 700px)': {
+    height: 48,
+    fontSize: 18,
+  },
 });
 
 const Button = props => {
@@ -36,6 +40,10 @@ const StyledStatusButton = styled(SmoothButton)({
     background: '#222',
   },
   boxShadow: styles.boxShadow,
+  '@media(max-width: 700px)': {
+    padding: '10px',
+    fontSize: 12,
+  },
 });
 
 export const StatusButton = props => {

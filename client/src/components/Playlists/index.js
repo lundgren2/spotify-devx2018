@@ -9,7 +9,7 @@ import Avatar from '@material-ui/core/Avatar';
 const styles = theme => ({
   root: {
     width: '100%',
-    maxHeight: '590px',
+    maxHeight: '450px',
     overflow: 'scroll',
     backgroundColor: '#eee',
     borderRadius: 8,

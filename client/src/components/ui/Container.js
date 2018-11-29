@@ -1,9 +1,17 @@
 import React from 'react';
-import { Box } from '@smooth-ui/core-em';
+import styled from 'react-emotion';
+import { Box, background } from '@smooth-ui/core-em';
 
+const StyledBox = styled(Box)({
+  '@media(max-width: 700px)': {
+    margin: '10px !important',
+    padding: '10px !important',
+    background: 'red',
+  },
+});
 const Container = props => {
   return (
-    <Box
+    <StyledBox
       py={25}
       px={20}
       m={20}
@@ -15,12 +23,14 @@ const Container = props => {
       position="relative"
       textAlign="center"
       boxShadow="0 4px 12px 0 rgba(0, 0, 0, .06)"
-      minHeight="480px"
       maxWidth="420px"
-      maxHeight="750px"
+      maxHeight="640px"
+      height="auto"
+      width="100%"
+      {...props}
     >
       <div>{props.children}</div>
-    </Box>
+    </StyledBox>
   );
 };
 

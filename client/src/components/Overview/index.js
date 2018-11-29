@@ -38,19 +38,21 @@ export default class Overview extends Component {
       this.setState({ showChat: false, showOverview: true });
     }
 
-    let playlist = null;
     if (this.props.location.state) {
-      playlist = this.props.location.state.playlist;
-    }
-    getPlaylistAudioInfo(playlist).then(playlistAttributes => {
-      this.setState({
-        playlistAttributes: playlistAttributes,
-        playlist: playlist,
-      });
+      let playlist = this.props.location.state.playlist;
+      getPlaylistAudioInfo(playlist).then(playlistAttributes => {
+        this.setState({
+          playlistAttributes: playlistAttributes,
+          playlist: playlist,
+        });
 
-      const mood = this.getMood();
-      this.setState({ emoji: mood.EMOJI, color: mood.COLOR });
-    });
+        const mood = this.getMood();
+        this.setState({
+          emoji: mood.EMOJI,
+          color: mood.COLOR,
+        });
+      });
+    }
   }
 
   getMood = () => {
@@ -94,6 +96,11 @@ export default class Overview extends Component {
         transition: 'opacity 0.5s ease-in-out',
         opacity: showOverview ? 1 : 0,
         textAlign: 'left',
+      },
+      emojiText: {
+        '@media(max-width: 700px)': {
+          fontSize: 14,
+        },
       },
     };
     const renderChat = () => (
@@ -148,7 +155,7 @@ export default class Overview extends Component {
               />
             </Box>
             <Box width={'100%'} px={2}>
-              <ul style={{ fontSize: 16, margin: '0px 0' }}>
+              <ul style={{ fontSize: 14, margin: '0' }}>
                 <li>
                   <b>Tempo:</b> {Math.floor(playlistAttr.tempo)}bpm
                 </li>
@@ -184,7 +191,7 @@ export default class Overview extends Component {
             </Box>
           </Box>
           <div style={{ textAlign: 'center', positin: 'relative' }}>
-            <b style={{ fontSize: 18 }}>
+            <b style={{ fontSize: 14 }}>
               Your emoji today based on your playlist:
               <br />
             </b>
@@ -235,7 +242,6 @@ export default class Overview extends Component {
           <div onClick={this.toggleEmoji}>
             <Button>Find friends</Button>
           </div>
-          <br />
           <Link to={{ pathname: '/' }}>
             <span
               style={{
@@ -245,6 +251,7 @@ export default class Overview extends Component {
                 textTransform: 'uppercase',
                 fontWeight: 'bold',
                 textAlign: 'center',
+                marginTop: 8,
               }}
             >
               Change playlist
