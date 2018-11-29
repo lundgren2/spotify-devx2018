@@ -9,6 +9,7 @@ import styles from '../../styles';
 
 import { MOOD_HAPPY, MOOD_SAD, MOOD_ANGRY, MOOD_PARTY } from './mood';
 import { STATUS_1, STATUS_2, STATUS_3 } from './status';
+import MyEmotion from '../MyEmotion';
 
 // TODO: Refactor this chaos Component
 export default class Overview extends Component {
@@ -18,29 +19,23 @@ export default class Overview extends Component {
     showOverview: false,
     playlistAttributes: null,
     text: '',
-    firstTime: true,
-    token: localStorage.getItem('accessToken'),
+    showEmoji: false,
   };
 
   componentDidMount() {
-    const firstTime = this.props.location.state
-      ? this.props.location.state.firstTime
-      : true;
-    if (firstTime) {
-      this.state.firstTime &&
-        setTimeout(() => {
-          this.setState({
-            showChat: true,
-            firstTime: false,
-          });
-        }, 2500);
+    if (this.state.firstTime) {
+      setTimeout(() => {
+        this.setState({
+          showChat: true,
+          firstTime: false,
+        });
+      }, 2500);
 
-      this.state.firstTime &&
-        setTimeout(() => {
-          this.setState({
-            showOverview: true,
-          });
-        }, 3000);
+      setTimeout(() => {
+        this.setState({
+          showOverview: true,
+        });
+      }, 3000);
     } else {
       this.setState({
         showChat: false,
@@ -49,10 +44,8 @@ export default class Overview extends Component {
     }
 
     let playlist = null;
-    let token = null;
     if (this.props.location.state) {
       playlist = this.props.location.state.playlist;
-      token = this.props.location.state.token;
     }
     getPlaylistAudioInfo(playlist).then(playlistAttributes => {
       this.setState({
@@ -81,7 +74,6 @@ export default class Overview extends Component {
       pathname: '/emotion',
       state: {
         playlist: this.state.playlist,
-        token: this.state.token,
         emoji: emoji,
         color: color,
         text: this.state.text,
@@ -90,7 +82,15 @@ export default class Overview extends Component {
   };
 
   render() {
-    const { playlist, playlistAttributes, showChat, showOverview } = this.state;
+    const {
+      playlist,
+      playlistAttributes,
+      showChat,
+      showOverview,
+      showEmoji,
+      text,
+    } = this.state;
+
     const style = {
       chatText: {
         transition: 'opacity 1s ease-in-out',
@@ -111,7 +111,7 @@ export default class Overview extends Component {
         <p>
           So you feel like your playlist
           <br />{' '}
-          <b style={{ fontSize: 32 }}>{playlist && `${playlist.name} ?`}</b>‍‍‍‍
+          <b style={{ fontSize: 32 }}>{playlist && `${playlist.name}?`}</b>‍‍‍‍
         </p>
       </div>
     );
@@ -256,7 +256,9 @@ export default class Overview extends Component {
       );
     };
 
-    return (
+    return showEmoji ? (
+      <MyEmotion emoji={emoji} color={color} text={text} />
+    ) : (
       <Container>
         {renderChat()}
         {renderOverview()}
