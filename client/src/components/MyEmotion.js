@@ -2,7 +2,7 @@ import React from 'react';
 import Emoji from './Emoji';
 
 const MyEmotion = props => {
-  const { emoji, color, text, playlist, token } = props.location.state;
+  const { emoji, color, text, toggleEmoji } = props;
 
   const style = {
     container: {
@@ -15,25 +15,16 @@ const MyEmotion = props => {
       justifyContent: 'center',
       alignItems: 'center',
       verticalAlign: 'middle',
-      fontSize: '670%',
+      fontSize: '600%',
       textAlign: 'center',
+      zIndex: 99999,
     },
   };
 
   return (
     <div
       onClick={() => {
-        props.history.push({
-          pathname: '/overview',
-          state: {
-            playlist: playlist,
-            token: token,
-            emoji: emoji,
-            color: color,
-            text: text,
-            firstTime: false,
-          },
-        });
+        toggleEmoji();
       }}
     >
       <div style={style.container}>

@@ -9,11 +9,11 @@ import Avatar from '@material-ui/core/Avatar';
 const styles = theme => ({
   root: {
     width: '100%',
-    height: '80%',
-    maxHeight: '50vh',
-    overflow: 'auto',
+    maxHeight: '590px',
+    overflow: 'scroll',
     backgroundColor: '#eee',
     borderRadius: 8,
+    position: 'relative',
   },
 });
 

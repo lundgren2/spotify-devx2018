@@ -19,28 +19,23 @@ export default class Overview extends Component {
     showOverview: false,
     playlistAttributes: null,
     text: '',
+    emoji: '🤑',
+    color: 'green',
     showEmoji: false,
+    firstTime: true,
   };
 
   componentDidMount() {
     if (this.state.firstTime) {
       setTimeout(() => {
-        this.setState({
-          showChat: true,
-          firstTime: false,
-        });
+        this.setState({ showChat: true, firstTime: false });
       }, 2500);
 
       setTimeout(() => {
-        this.setState({
-          showOverview: true,
-        });
+        this.setState({ showOverview: true });
       }, 3000);
     } else {
-      this.setState({
-        showChat: false,
-        showOverview: true,
-      });
+      this.setState({ showChat: false, showOverview: true });
     }
 
     let playlist = null;
@@ -52,6 +47,9 @@ export default class Overview extends Component {
         playlistAttributes: playlistAttributes,
         playlist: playlist,
       });
+
+      const mood = this.getMood();
+      this.setState({ emoji: mood.EMOJI, color: mood.COLOR });
     });
   }
 
@@ -69,17 +67,10 @@ export default class Overview extends Component {
     }
   };
 
-  linkToEmotion = (emoji, color) => {
-    this.props.history.push({
-      pathname: '/emotion',
-      state: {
-        playlist: this.state.playlist,
-        emoji: emoji,
-        color: color,
-        text: this.state.text,
-      },
+  toggleEmoji = () =>
+    this.setState({
+      showEmoji: !this.state.showEmoji,
     });
-  };
 
   render() {
     const {
@@ -89,6 +80,8 @@ export default class Overview extends Component {
       showOverview,
       showEmoji,
       text,
+      emoji,
+      color,
     } = this.state;
 
     const style = {
@@ -115,14 +108,6 @@ export default class Overview extends Component {
         </p>
       </div>
     );
-
-    let emoji = '🤑';
-    let color = 'green';
-    if (playlistAttributes) {
-      const mood = this.getMood();
-      emoji = mood.EMOJI;
-      color = mood.COLOR;
-    }
 
     const renderOverview = () => {
       const playlistName = playlist && playlist.name;
@@ -220,24 +205,38 @@ export default class Overview extends Component {
             <br />
             <br />
           </div>
-          <div onClick={() => this.setState({ text: STATUS_1 })}>
+          <div
+            onClick={() =>
+              this.setState({
+                text: STATUS_1,
+              })
+            }
+          >
             <StatusButton>{STATUS_1}</StatusButton>
           </div>
-          <div onClick={() => this.setState({ text: STATUS_2 })}>
+          <div
+            onClick={() =>
+              this.setState({
+                text: STATUS_2,
+              })
+            }
+          >
             <StatusButton>{STATUS_2}</StatusButton>
           </div>
-          <div onClick={() => this.setState({ text: STATUS_3 })}>
+          <div
+            onClick={() =>
+              this.setState({
+                text: STATUS_3,
+              })
+            }
+          >
             <StatusButton>{STATUS_3}</StatusButton>
           </div>
-          <div onClick={() => this.linkToEmotion(emoji, color)}>
+          <div onClick={this.toggleEmoji}>
             <Button>Find friends</Button>
           </div>
           <br />
-          <Link
-            to={{
-              pathname: '/',
-            }}
-          >
+          <Link to={{ pathname: '/' }}>
             <span
               style={{
                 color: '#555',
@@ -257,7 +256,12 @@ export default class Overview extends Component {
     };
 
     return showEmoji ? (
-      <MyEmotion emoji={emoji} color={color} text={text} />
+      <MyEmotion
+        emoji={this.state.emoji}
+        color={color}
+        text={text}
+        toggleEmoji={this.toggleEmoji}
+      />
     ) : (
       <Container>
         {renderChat()}
