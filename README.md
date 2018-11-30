@@ -21,7 +21,12 @@
 - Spotify SDK
 - emotion
 
-### Client
+## Instructions
 
-1. `cd client && yarn`
-2. run `yarn start`
+1. `$ git clone` this repo
+2. `$ yarn` to install all dependencies
+3. `$ yarn start` to run the server
+
+## Socify Server
+
+Repo: [https://github.com/lundgren2/socify-server](https://github.com/lundgren2/socify-server)
