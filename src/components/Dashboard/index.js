@@ -31,7 +31,9 @@ export default class Dashboard extends Component {
         <p>Pick one playlist that best matches your mood today!</p>
         {playlist ? (
           <Playlists linkToOverview={this.linkToOverview} items={playlist} />
-        ) : null}
+        ) : (
+          <a href="/">Refresh</a>
+        )}
       </Container>
     );
   }

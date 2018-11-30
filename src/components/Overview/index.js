@@ -55,6 +55,11 @@ export default class Overview extends Component {
     }
   }
 
+  logOut = () => {
+    localStorage.clear();
+    window.location.href = '/';
+  };
+
   getMood = () => {
     const valence = this.state.playlistAttributes.valence;
     const energy = this.state.playlistAttributes.energy;
@@ -205,43 +210,33 @@ export default class Overview extends Component {
                 fontSize: 12,
                 textTransform: 'uppercase',
                 fontWeight: 'bold',
+                paddingBottom: 12,
+                display: 'block',
               }}
             >
               Select your status
             </b>
-            <br />
-            <br />
           </div>
-          <div
-            onClick={() =>
-              this.setState({
-                text: STATUS_1,
-              })
-            }
-          >
+          <div onClick={() => this.setState({ text: STATUS_1 })}>
             <StatusButton>{STATUS_1}</StatusButton>
           </div>
-          <div
-            onClick={() =>
-              this.setState({
-                text: STATUS_2,
-              })
-            }
-          >
+          <div onClick={() => this.setState({ text: STATUS_2 })}>
             <StatusButton>{STATUS_2}</StatusButton>
           </div>
-          <div
-            onClick={() =>
-              this.setState({
-                text: STATUS_3,
-              })
-            }
-          >
+          <div onClick={() => this.setState({ text: STATUS_3 })}>
             <StatusButton>{STATUS_3}</StatusButton>
           </div>
           <div onClick={this.toggleEmoji}>
             <Button>Find friends</Button>
           </div>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              marginTop: 8,
+              width: '100%',
+            }}
+          />
           <Link to={{ pathname: '/' }}>
             <span
               style={{
@@ -250,14 +245,25 @@ export default class Overview extends Component {
                 padding: 12,
                 textTransform: 'uppercase',
                 fontWeight: 'bold',
-                textAlign: 'center',
-                marginTop: 8,
               }}
             >
               Change playlist
             </span>
-            <br />
           </Link>
+
+          <button
+            style={{
+              color: '#555',
+              fontSize: 12,
+              padding: 12,
+              textTransform: 'uppercase',
+              fontWeight: 'bold',
+              float: 'right',
+            }}
+            onClick={this.logOut}
+          >
+            Sign out
+          </button>
         </div>
       );
     };
