@@ -7,6 +7,7 @@ import Dashboard from './Dashboard';
 import Login from './Login';
 import Overview from './Overview';
 import GitHubLogo from '../images/github';
+import NoMatch from './NoMatch';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -55,6 +56,7 @@ class App extends Component {
               component={Overview}
               isAuthed={isAuthed}
             />
+            <Route component={NoMatch} />
           </>
         </Router>
         <a
