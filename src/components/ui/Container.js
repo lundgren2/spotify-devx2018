@@ -27,6 +27,7 @@ const Container = props => {
       maxHeight="640px"
       height="auto"
       width="100%"
+      zIndex="2"
       {...props}
     >
       <div>{props.children}</div>
