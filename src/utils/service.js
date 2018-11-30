@@ -10,13 +10,16 @@ export async function refreshAccessToken() {
   const refreshToken = localStorage.getItem('refreshToken');
 
   if (!refreshToken) return;
-  const response = await axios.get(`${config.BACKEND_URI}/refresh_token`, {
-    params: {
-      refresh_token: refreshToken,
-    },
-  });
-
-  localStorage.setItem('accessToken', response.data.access_token);
+  await axios
+    .get(`${config.BACKEND_URI}/refresh_token`, {
+      params: {
+        refresh_token: refreshToken,
+      },
+    })
+    .then(response => {
+      localStorage.setItem('accessToken', response.data.access_token);
+      window.location.href = '/';
+    });
 }
 
 export async function getUsersOwnPlaylists(limit) {
