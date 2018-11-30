@@ -61,6 +61,7 @@ export default class Overview extends Component {
   };
 
   getMood = () => {
+    if (!this.state.playlistAttributes) return;
     const valence = this.state.playlistAttributes.valence;
     const energy = this.state.playlistAttributes.energy;
     if (valence >= 0.5 && energy >= 0.5) {

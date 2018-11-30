@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from 'react-router-dom';
 import queryString from 'query-string';
 import './App.css';
 import styles from '../styles';
@@ -43,7 +48,7 @@ class App extends Component {
     return (
       <div style={styles.app}>
         <Router>
-          <>
+          <Switch>
             <Route path="/login" component={Login} />
             <PrivateRoute
               exact
@@ -57,7 +62,7 @@ class App extends Component {
               isAuthed={isAuthed}
             />
             <Route component={NoMatch} />
-          </>
+          </Switch>
         </Router>
         <a
           className="github"
