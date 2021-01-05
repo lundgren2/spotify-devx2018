@@ -9,7 +9,7 @@
     "emotion": "^9.2.12",
     "emotion-theming": "^9.2.9",
     "react-emotion": "^9.2.12",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "query-string": "^6.2.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
